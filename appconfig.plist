@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>categoriesUrl</key>
+	<string>/glossary/getterms.php?cat=1</string>
+	<key>tagsUrl</key>
+	<string>/glossary/getterms.php?tags=1</string>
+	<key>apiDomainProd</key>
+	<string>http://brisksoft.us</string>
+	<key>apiDomainDev</key>
+	<string>http://localhost/~brenden/BriskSoft</string>
+	<key>termsUrl</key>
+	<string>/glossary/getterms.php?tag=&lt;tag&gt;</string>
+</dict>
+</plist>
