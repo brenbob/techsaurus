@@ -6,12 +6,21 @@
 //  Copyright (c) 2014 Brenden West. All rights reserved.
 //
 
-@interface Jobs : UIViewController <UIWebViewDelegate>
+@class AppDelegate;
 
-@property (nonatomic, strong) IBOutlet UIWebView	*webView;
-@property (nonatomic, strong) NSString	*selectedTag;
-@property (nonatomic, strong) IBOutlet UISegmentedControl *btnJobsSites;
+@interface Jobs : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-- (IBAction)loadJobs:(id)sender;
+@property (nonatomic, strong) AppDelegate *appDelegate;
+@property (nonatomic, strong) IBOutlet UITableView	*tableView;
+@property (nonatomic, strong) IBOutlet UISegmentedControl *btnJobSite;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *uiLoading;
+
+@property (nonatomic, strong) NSString *searchTerm;
+
+@property (nonatomic, strong) NSMutableArray *jobsAll;
+@property (nonatomic, strong) NSArray *jobsForSite;
+
+- (IBAction)switchJobSite:(id)sender;
+- (IBAction)loadJobAgent;
 
 @end

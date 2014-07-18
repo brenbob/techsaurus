@@ -17,9 +17,11 @@
 		CE21BE741966556E004008AB /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE731966556E004008AB /* DetailViewController.m */; };
 		CE21BE7A19665626004008AB /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE21BE7819665626004008AB /* Main_iPhone.storyboard */; };
 		CE21BE7C19665667004008AB /* appconfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE21BE7B19665667004008AB /* appconfig.plist */; };
-		CE21BE7E1966576F004008AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE21BE7D1966576F004008AB /* Images.xcassets */; };
+		CE21BE7E1966576F004008AB /* sort_up_44.png in Resources */ = {isa = PBXBuildFile; fileRef = CE21BE7D1966576F004008AB /* sort_up_44.png */; };
 		CE21BE81196657C1004008AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE21BE7F196657C1004008AB /* InfoPlist.strings */; };
 		CE21BE871966591F004008AB /* DWTagList.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE861966591F004008AB /* DWTagList.m */; };
+		CE3FE2331977858900005552 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = CE3FE2321977858900005552 /* refresh.png */; };
+		CE5367DB1975F97500C26458 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE5367DA1975F97500C26458 /* Images.xcassets */; };
 		CE67B22F19592574001FEA7F /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67B21D19592574001FEA7F /* AFHTTPRequestOperation.m */; };
 		CE67B23019592574001FEA7F /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67B21F19592574001FEA7F /* AFHTTPRequestOperationManager.m */; };
 		CE67B23119592574001FEA7F /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67B22119592574001FEA7F /* AFHTTPSessionManager.m */; };
@@ -62,11 +64,13 @@
 		CE21BE731966556E004008AB /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		CE21BE7919665626004008AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
 		CE21BE7B19665667004008AB /* appconfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = appconfig.plist; sourceTree = "<group>"; };
-		CE21BE7D1966576F004008AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = SOURCE_ROOT; };
+		CE21BE7D1966576F004008AB /* sort_up_44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sort_up_44.png; path = ../icons/sort_up_44.png; sourceTree = SOURCE_ROOT; };
 		CE21BE80196657C1004008AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CE21BE851966591F004008AB /* DWTagList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWTagList.h; sourceTree = "<group>"; };
 		CE21BE861966591F004008AB /* DWTagList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWTagList.m; sourceTree = "<group>"; };
 		CE29F2FC195FDBF60031FC23 /* Tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
+		CE3FE2321977858900005552 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = ../icons/refresh.png; sourceTree = SOURCE_ROOT; };
+		CE5367DA1975F97500C26458 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = SOURCE_ROOT; };
 		CE67B21C19592574001FEA7F /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		CE67B21D19592574001FEA7F /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		CE67B21E19592574001FEA7F /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -96,7 +100,6 @@
 		CEED3EE919589DB0002D1785 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CEED3EED19589DB0002D1785 /* techlingo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "techlingo-Info.plist"; sourceTree = "<group>"; };
 		CEED3EF319589DB0002D1785 /* techlingo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "techlingo-Prefix.pch"; sourceTree = "<group>"; };
-		CEED3EFB19589DB0002D1785 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		CEED3EFD19589DB0002D1785 /* Terms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Terms.h; sourceTree = "<group>"; };
 		CEED3F0019589DB0002D1785 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		CEED3F0919589DB0002D1785 /* techlingoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = techlingoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,13 +171,14 @@
 		CEED3ED919589DB0002D1785 = {
 			isa = PBXGroup;
 			children = (
+				CE21BE7B19665667004008AB /* appconfig.plist */,
+				CE67B21B19592574001FEA7F /* AFNetworking */,
 				CE21BE661966541B004008AB /* AppDelegate.h */,
 				CE21BE671966541B004008AB /* AppDelegate.m */,
 				CE21BE61196653C2004008AB /* Common.h */,
 				CE21BE62196653C2004008AB /* Common.m */,
 				CE21BE841966590B004008AB /* DWTag */,
 				CE21BE7F196657C1004008AB /* InfoPlist.strings */,
-				CE21BE7B19665667004008AB /* appconfig.plist */,
 				CEED3F0019589DB0002D1785 /* DetailViewController.h */,
 				CE21BE731966556E004008AB /* DetailViewController.m */,
 				CEA4FAD9196A26D800B3F823 /* Jobs.h */,
@@ -185,9 +189,8 @@
 				CE21BE6D196654AF004008AB /* Tags.m */,
 				CEED3EFD19589DB0002D1785 /* Terms.h */,
 				CE21BE6919665444004008AB /* Terms.m */,
-				CE21BE6B1966547B004008AB /* Salad.m */,
 				CEA1B7081962176300F40A95 /* Salad.h */,
-				CE67B21B19592574001FEA7F /* AFNetworking */,
+				CE21BE6B1966547B004008AB /* Salad.m */,
 				CEED3EEB19589DB0002D1785 /* techlingo */,
 				CEED3F1019589DB0002D1785 /* techlingoTests */,
 				CEED3EE419589DB0002D1785 /* Frameworks */,
@@ -218,9 +221,10 @@
 		CEED3EEB19589DB0002D1785 /* techlingo */ = {
 			isa = PBXGroup;
 			children = (
-				CE21BE7D1966576F004008AB /* Images.xcassets */,
+				CE5367DA1975F97500C26458 /* Images.xcassets */,
+				CE3FE2321977858900005552 /* refresh.png */,
+				CE21BE7D1966576F004008AB /* sort_up_44.png */,
 				CE21BE7819665626004008AB /* Main_iPhone.storyboard */,
-				CEED3EFA19589DB0002D1785 /* Main_iPad.storyboard */,
 				CEED3EEC19589DB0002D1785 /* Supporting Files */,
 			);
 			path = techlingo;
@@ -315,6 +319,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = CEED3ED919589DB0002D1785;
 			productRefGroup = CEED3EE319589DB0002D1785 /* Products */;
@@ -333,8 +338,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE21BE7C19665667004008AB /* appconfig.plist in Resources */,
-				CE21BE7E1966576F004008AB /* Images.xcassets in Resources */,
+				CE3FE2331977858900005552 /* refresh.png in Resources */,
+				CE21BE7E1966576F004008AB /* sort_up_44.png in Resources */,
 				CE21BE7A19665626004008AB /* Main_iPhone.storyboard in Resources */,
+				CE5367DB1975F97500C26458 /* Images.xcassets in Resources */,
 				CE21BE81196657C1004008AB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,14 +417,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		CEED3EFA19589DB0002D1785 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CEED3EFB19589DB0002D1785 /* Base */,
-			);
-			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -439,6 +438,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "../../AFNetworking-AFNetworking-20f22fe/AFNetworking/";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -479,6 +479,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = "../../AFNetworking-AFNetworking-20f22fe/AFNetworking/";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;

@@ -16,11 +16,11 @@
 @property (nonatomic, strong) AppDelegate *appDelegate;
 @property (strong, nonatomic) IBOutlet UILabel *lblTermsByTag;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) IBOutlet UISegmentedControl *btnTableActions;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *btnSortTable;
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) NSArray *allTerms;
 @property (strong, nonatomic) NSString *selectedTag;
 
-- (IBAction)sortTable:(id)sender;
+- (IBAction)sortTable;
 
 @end

@@ -13,5 +13,8 @@
 - (id) init;
 
 + (UITextView *)formatTextView:(UITextView*)textView :(NSString*)placeholder;
++ (NSString *)stringFromDate:(NSDate*)tmpDate;
++ (NSString *)getShortDate:(NSString*)tmpDate;
++ (NSString *)getUrl:(NSString*)key :(NSString*)tag;
 
 @end

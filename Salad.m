@@ -14,6 +14,13 @@
 
 @end
 
+NSArray *roles;
+NSArray *activity;
+NSArray *activity2;
+NSArray *roleAdj;
+NSArray *prodAdj;
+NSArray *coAdj;
+
 @implementation Salad
 @synthesize appDelegate;
 
@@ -35,11 +42,39 @@
     appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
     [Common formatTextView:self.output :nil];
+    [self requestWordLists];
     
-    // generate random text
-    [self makeSalad];
-        
 }
+
+-(void)requestWordLists
+{
+
+    NSString *tagsUrl = [Common getUrl:@"saladUrl" :@""];
+    NSURL *url = [NSURL URLWithString:tagsUrl];
+    NSLog(@"url = %@",url);
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //AFNetworking asynchronous url request
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]
+                                         initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        roles = [responseObject objectForKey:@"roles"];
+        activity = [responseObject objectForKey:@"activity"];
+        activity2 = [responseObject objectForKey:@"activity2"];
+        roleAdj = [responseObject objectForKey:@"roleAdj"];
+        prodAdj = [responseObject objectForKey:@"prodAdj"];
+        coAdj = [responseObject objectForKey:@"coAdj"];
+        // generate random text
+        [self makeSalad];
+
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Failed: Status Code: %ld", (long)operation.response.statusCode);
+    }];
+    [operation start];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -53,14 +88,6 @@
 
 - (IBAction)makeSalad {
 
-    NSArray *roles = @[@"developer",@"designer",@"tester",@"SDET",@"DevOps engineer",@"DB admin",@"architect"];
-    NSArray *activity = @[@"quality",@"software",@"creative design",@"cloud",@"systems",@"database"];
-    NSArray *activity2 = @[@"engineering",@"design",@"delivery",@"architecting",@"specification",@"management"];
-    
-    NSArray *roleAdj = @[@"rockstar",@"ninja",@"guru",@"extremely talented",@"fun-loving",@"flexible", @"passionate",@"detail oriented",@"creative",@"driven",@"motivated",@"tenacious",@"street-smart",@"intelligent", @"junior", @"experienced", @"dynamic", @"fanatical"];
-    NSArray *prodAdj = @[@"scalable",@"bleeding-edge",@"modern",@"juicy",@"world-class",@"unique",@"proven", @"high performance", @"responsive", @"stunning", @"mission-critical", @"robust", @"secure"];
-    NSArray *coAdj = @[@"leading",@"disruptive",@"revolutionary",@"mobile",@"early-stage startup",@"fantastic",@"amazing",@"dominant",@"fast-growing",@"exciting",@"well-funded",@"collaborative"];
-    
     // get random item from each array
     NSString *company = [NSString stringWithFormat:@"%@, %@",[coAdj objectAtIndex:[self getRandom:[coAdj count]]], [coAdj objectAtIndex:[self getRandom:[coAdj count]]]];
     NSString *company2 = [coAdj objectAtIndex:[self getRandom:[coAdj count]]];

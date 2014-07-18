@@ -8,12 +8,14 @@
 
 #import "TermsByTagVC.h"
 #import "AppDelegate.h"
+#import "Common.h"
 #import "AFNetworking.h"
 #import "DetailViewController.h"
 
 @implementation TermsByTagVC
-@synthesize appDelegate, btnTableActions;
-@synthesize selectedTag;
+@synthesize appDelegate, selectedTag;
+
+int sorted = 1;
 
 
 - (void)awakeFromNib
@@ -30,7 +32,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.title = [NSString stringWithFormat:@"related to '%@'",selectedTag];
+    self.title = selectedTag.capitalizedString;
         
     if (IS_OS_7_OR_LATER) {
         self.automaticallyAdjustsScrollViewInsets = NO; // Avoid the top UITextView space
@@ -40,8 +42,6 @@
     _allTerms = [[NSArray alloc] init];
     
     [self requestTerms:selectedTag];
-    
-    [btnTableActions addTarget:self action:@selector(sortTable:) forControlEvents:UIControlEventValueChanged];
     
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
@@ -56,22 +56,9 @@
 
 -(void)requestTerms:(NSString*)tag
 {
-    NSString *termsUrl = [appDelegate.configuration objectForKey:@"termsUrl"];
-    if (tag != nil) {
-        tag = [tag stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-        termsUrl = [termsUrl stringByReplacingOccurrencesOfString:@"<tag>" withString:tag];
-    }
-    
-    NSString *apiDomain;
-#ifdef DEVAPI
-    apiDomain = [appDelegate.configuration objectForKey:@"apiDomainDev"];
-#else
-    apiDomain = [appDelegate.configuration objectForKey:@"apiDomainProd"];
-#endif
-    NSLog(@"url = %@%@",apiDomain,termsUrl);
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",apiDomain,termsUrl]];
-    
+    NSString *termsUrl = [Common getUrl:@"termsUrl" :tag];
+    NSURL *url = [NSURL URLWithString:termsUrl];
+    NSLog(@"url = %@",url);
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     //AFNetworking asynchronous url request
@@ -156,13 +143,22 @@
     }
 }
 
-- (IBAction)sortTable:(id)sender {
-    NSLog(@"sortTable %i",[sender selectedSegmentIndex]);
-    NSSortDescriptor *ageDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
-    if ([sender selectedSegmentIndex] == 1) {
-        ageDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO];
+- (IBAction)sortTable {
+
+    UIImage *tmpImage = [UIImage imageWithCGImage:_btnSortTable.image.CGImage scale:2.0 orientation:UIImageOrientationLeft];
+
+    NSSortDescriptor *titleDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    if (sorted) {
+        titleDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO selector:@selector(caseInsensitiveCompare:)];
+        sorted = 0;
+    } else {
+        sorted = 1;
+        // rotate 180
+        tmpImage = [UIImage imageWithCGImage:_btnSortTable.image.CGImage scale:2.0 orientation:UIImageOrientationDown];
     }
-    NSArray *sortDescriptors = @[ageDescriptor];
+    _btnSortTable.image = tmpImage;
+    
+    NSArray *sortDescriptors = @[titleDescriptor];
     NSArray *sortedArray = [_allTerms sortedArrayUsingDescriptors:sortDescriptors];
     _allTerms = sortedArray;
     [self.tableView reloadData];

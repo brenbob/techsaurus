@@ -49,16 +49,21 @@
         
         // init configuration map
         NSDictionary *configMap = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   @"appStoreUrl",             @"appStoreUrl",
+                                   @"jobAgentUrl",             @"jobAgentUrl",
                                    @"kGaPropertyId",           @"kGaPropertyId",
                                    @"kGaDispatchPeriod",       @"kGaDispatchPeriod",
                                    @"kAllowTracking",          @"kAllowTracking",
                                    @"adUnitID",                @"adUnitID",
                                    @"apiDomainDev",            @"apiDomainDev",
                                    @"apiDomainProd",           @"apiDomainProd",
+                                   @"jobsApiDomainDev",        @"jobsApiDomainDev",
+                                   @"jobsApiDomainProd",       @"jobsApiDomainProd",
                                    @"termsUrl",                @"termsUrl",
                                    @"tagsUrl",                 @"tagsUrl",
                                    @"categoriesUrl",           @"categoriesUrl",
+                                   @"jobSiteList",             @"jobSiteList",
+                                   @"jobsSearchUrl",           @"jobsSearchUrl",
+                                   @"saladUrl",                @"saladUrl",
                                    nil];
         
         

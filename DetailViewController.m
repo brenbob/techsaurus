@@ -13,8 +13,6 @@
 #import "Common.h"
 
 
-#define kMaxHeight 100.f
-
 @interface DetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
@@ -35,38 +33,23 @@
     }        
 }
 
-- (void)configureTextView
-{
-    // Update the user interface for the detail item.
-    if (_detailItem) {
-        _description.text = [self.detailItem valueForKey:@"description"];
-        
-//      _description.text = @"Summertime and the Coding's Easy: We're in Van Vorst, Amazon has said they'll turn on the air conditioning, and there's fun to be had. Remember, parking is $2 **all day** at the 321 Terry and 550 Terry garages, so make a day of Downtown after Dojo";
-/*
-        [_description invalidateIntrinsicContentSize];
-        CGSize sizeThatFitsTextView = [_description sizeThatFits:CGSizeMake(_description.frame.size.width, MAXFLOAT)];
-        _descriptionHeightConstraint.constant = ceilf(sizeThatFitsTextView.height);
-        [_description layoutIfNeeded];
-*/
-    }
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.title = [self.detailItem valueForKey:@"title"];
-
-    _descriptionHeightConstraint = [NSLayoutConstraint constraintWithItem:self.description attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:100.0];
-
-    [_description addConstraint:_descriptionHeightConstraint];
     [Common formatTextView:_description :nil];
-    [self configureTextView];
+    
+    if (_detailItem) {
+        _description.text = [self.detailItem valueForKey:@"description"];
+    }
+    
+    // populate resources table
     _resources = [[NSMutableArray alloc] init];
     [_resources addObjectsFromArray:[self.detailItem objectForKey:@"resources"]];
     [_resources addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"link", @"Jobs", @"title", nil]];
     [_resources addObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"http://www.quora.com/search?q=%@",self.title], @"link", @"Quora", @"title", nil]];
-    
     
     if (_resources) {
         _tableView.dataSource = self;
@@ -91,13 +74,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-
-    // split tags string into array for rendering
-    // add current item to tag list
-    NSMutableArray *tagsArray = [[[self.detailItem valueForKey:@"tags"] componentsSeparatedByString:@","] mutableCopy];
-    [tagsArray insertObject:[self.detailItem valueForKey:@"title"] atIndex:0];
-    [self renderTags:tagsArray];
-
+    // Split related tags into an array for rendering
+    if (![[self.detailItem valueForKey:@"tags"] isEqualToString:@""]) {
+        NSMutableArray *tagsArray = [[[self.detailItem valueForKey:@"tags"] componentsSeparatedByString:@","] mutableCopy];
+        [self renderTags:tagsArray];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -120,12 +101,12 @@
     if ([[segue identifier] isEqualToString:@"showByTag"]) {
         [[segue destinationViewController] setSelectedTag:_selectedTag];
     } else  if ([[segue identifier] isEqualToString:@"showJobs"]) {
-        [[segue destinationViewController] setSelectedTag:self.title];
+        [[segue destinationViewController] setSearchTerm:self.title];
     }
 }
 
 - (void)renderTags:(NSArray *)tagsArray {
-    _tagList = [[DWTagList alloc] initWithFrame:CGRectMake(10.0f, 180.0f, self.view.bounds.size.width-40.0f, 50.0f)];
+    _tagList = [[DWTagList alloc] initWithFrame:CGRectMake(10.0f, 207.0f, self.view.bounds.size.width-40.0f, 50.0f)];
     [_tagList setAutomaticResize:YES];
     [_tagList setTags:tagsArray];
     [_tagList setTagDelegate:self];
@@ -167,7 +148,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"More info:";
+    return @"Resources:";
 }
 
 // tell our table what kind of cell to use and its title for the given row

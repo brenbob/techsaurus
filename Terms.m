@@ -8,6 +8,7 @@
 
 #import "Terms.h"
 #import "AppDelegate.h"
+#import "Common.h"
 #import "AFNetworking.h"
 #import "DetailViewController.h"
 
@@ -47,6 +48,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.title = @"Tech Words";
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
@@ -56,21 +58,9 @@
 -(void)requestTerms:(NSString*)tag
 {
     
-    NSString *termsUrl = [appDelegate.configuration objectForKey:@"termsUrl"];
-    if (tag != nil) {
-        tag = [tag stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    } else { tag = @""; }
-    termsUrl = [termsUrl stringByReplacingOccurrencesOfString:@"<tag>" withString:tag];
-    
-
-    NSString *apiDomain;
-    #ifdef DEVAPI
-        apiDomain = [appDelegate.configuration objectForKey:@"apiDomainDev"];
-    #else
-        apiDomain = [appDelegate.configuration objectForKey:@"apiDomainProd"];
-    #endif
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",apiDomain,termsUrl]];
+    NSString *termsUrl = [Common getUrl:@"termsUrl" :tag];
+    NSURL *url = [NSURL URLWithString:termsUrl];
+    NSLog(@"url = %@",url);
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     //AFNetworking asynchronous url request
@@ -198,6 +188,7 @@
 {
 
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        self.title = @"Back";
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         int originalIndex = [(NSNumber *)[_sections objectAtIndex:indexPath.section][1] intValue] + indexPath.row;
         NSArray *object = [_allTerms objectAtIndex:originalIndex];
@@ -205,32 +196,20 @@
     }
 }
 
-- (IBAction)sortTable_:(id)sender {
-    
-    NSSortDescriptor *titleDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-    if ([sender selectedSegmentIndex] == 1) {
-        titleDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO selector:@selector(caseInsensitiveCompare:)];
-    }
-    NSArray *sortDescriptors = @[titleDescriptor];
-    NSArray *sortedArray = [_allTerms sortedArrayUsingDescriptors:sortDescriptors];
-    _allTerms = sortedArray;
-    
-    [self getSections:_allTerms];
-
-    [self.tableView reloadData];
-}
-
 - (IBAction)sortTable {
+    
+    UIImage *tmpImage = [UIImage imageWithCGImage:_btnSortTable.image.CGImage scale:2.0 orientation:UIImageOrientationLeft];
     
     NSSortDescriptor *titleDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     if (self->sorted) {
         titleDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO selector:@selector(caseInsensitiveCompare:)];
         sorted = 0;
-        [_btnSortTable setTitle:@"A-Z ^" forState:UIControlStateNormal];
     } else {
+        // rotate 180
+        tmpImage = [UIImage imageWithCGImage:_btnSortTable.image.CGImage scale:2.0 orientation:UIImageOrientationDown];
         sorted = 1;
-        [_btnSortTable setTitle:@"A-Z v" forState:UIControlStateNormal];
     }
+    _btnSortTable.image = tmpImage;
     
     NSArray *sortDescriptors = @[titleDescriptor];
     NSArray *sortedArray = [_allTerms sortedArrayUsingDescriptors:sortDescriptors];

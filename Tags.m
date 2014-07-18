@@ -7,6 +7,7 @@
 //
 #import "Tags.h"
 #import "AppDelegate.h"
+#import "Common.h"
 #import "AFNetworking.h"
 #import "DetailViewController.h"
 
@@ -32,7 +33,6 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Tags";
     
     appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self->allTags = [[NSArray alloc] init];
@@ -57,16 +57,9 @@
 
 -(void)requestTags
 {
-    
-    NSString *tagsUrl = [appDelegate.configuration objectForKey:@"tagsUrl"];
-    NSString *apiDomain;
-#ifdef DEVAPI
-    apiDomain = [appDelegate.configuration objectForKey:@"apiDomainDev"];
-#else
-    apiDomain = [appDelegate.configuration objectForKey:@"apiDomainProd"];
-#endif
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",apiDomain,tagsUrl]];
+    NSString *tagsUrl = [Common getUrl:@"tagsUrl" :@""];
+    NSURL *url = [NSURL URLWithString:tagsUrl];
+    NSLog(@"url = %@",url);
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     //AFNetworking asynchronous url request
@@ -138,6 +131,7 @@
 {
     
     if ([[segue identifier] isEqualToString:@"showByTag"]) {
+        self.title = @"Back";
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         [[segue destinationViewController] setSelectedTag:[[self->tableData objectAtIndex:indexPath.row] valueForKey:@"tag"]];
     }
@@ -155,16 +149,17 @@
 
 - (IBAction)sortTable {
     
+    UIImage *tmpImage = [UIImage imageWithCGImage:_btnSortTable.image.CGImage scale:2.0 orientation:UIImageOrientationLeft];
     NSSortDescriptor *tagDescriptor = [[NSSortDescriptor alloc] initWithKey:@"tag" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     if (self->sorted) {
         tagDescriptor = [[NSSortDescriptor alloc] initWithKey:@"tag" ascending:NO selector:@selector(caseInsensitiveCompare:)];
         sorted = 0;
-        [_btnSortTable setTitle:@"A-Z ^" forState:UIControlStateNormal];
     } else {
         sorted = 1;
-        [_btnSortTable setTitle:@"A-Z v" forState:UIControlStateNormal];
+        // rotate 180
+        tmpImage = [UIImage imageWithCGImage:_btnSortTable.image.CGImage scale:2.0 orientation:UIImageOrientationDown];
     }
-    NSLog(@"button text = %@",_btnSortTable.titleLabel.text);
+    _btnSortTable.image = tmpImage;
     
     NSArray *sortDescriptors = @[tagDescriptor];
     NSArray *sortedArray = [self->tableData sortedArrayUsingDescriptors:sortDescriptors];

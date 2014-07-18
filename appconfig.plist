@@ -2,6 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>saladUrl</key>
+	<string>/glossary/salad.json</string>
+	<key>jobAgentUrl</key>
+	<string>https://itunes.apple.com/us/app/job-agent/id517622797?mt=8</string>
+	<key>jobsSearchUrl</key>
+	<string>/getjobs?location=&amp;kw=&lt;kw&gt;&amp;v=1&amp;country=US&amp;max=50&amp;age=14&amp;distance=20</string>
+	<key>jobsApiDomainDev</key>
+	<string>http://localhost:8888</string>
+	<key>jobsApiDomainProd</key>
+	<string>http://brisksoft.heroku.com</string>
+	<key>jobSiteList</key>
+	<array>
+		<string>indeed</string>
+		<string>stackoverflow</string>
+		<string>careerbuilder</string>
+	</array>
 	<key>categoriesUrl</key>
 	<string>/glossary/getterms.php?cat=1</string>
 	<key>tagsUrl</key>

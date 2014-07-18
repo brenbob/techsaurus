@@ -17,7 +17,7 @@
 @property (nonatomic, strong) AppDelegate *appDelegate;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *btnSwitchTable;
-@property (nonatomic, strong) IBOutlet UIButton *btnSortTable;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *btnSortTable;
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
 - (IBAction)sortTable;
