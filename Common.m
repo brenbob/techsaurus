@@ -96,4 +96,41 @@
     return retString;
 }
 
++(NSArray* )getSections:(NSArray*)allItems withKey:(NSString*)key
+{
+    NSMutableArray *tmpSections = [[NSMutableArray alloc] init];
+    
+    int sectionStart = 0;
+    int sectionCount = 1;
+    NSString *tmpTitle = nil;
+    NSString *sectionTitle = nil;
+    
+    for (int i=0; i < [allItems count]; i++) {
+        // get first letter of term as section header
+        
+        tmpTitle = [[[allItems[i] valueForKey:key] substringToIndex:1] uppercaseString];
+        if ([tmpTitle isEqualToString:sectionTitle]) {
+            // section has 2 or more items, so increment counter
+            sectionCount++;
+        } else  {
+            // populate sections array and reset counters
+            if ([sectionTitle length] > 0) {
+                [tmpSections addObject:[NSArray arrayWithObjects:sectionTitle, [NSNumber numberWithInteger:sectionStart], [NSNumber numberWithInteger:sectionCount], nil]];
+            }
+            sectionStart = i;
+            sectionTitle = tmpTitle;
+            sectionCount = 1;
+            
+        }
+        if (i == [allItems count]-1) {
+            // last item in parent array
+            [tmpSections addObject:[NSArray arrayWithObjects:sectionTitle, [NSNumber numberWithInteger:sectionStart], [NSNumber numberWithInteger:sectionCount], nil]];
+        }
+        
+    }
+    return tmpSections;
+    
+}
+
+
 @end

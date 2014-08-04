@@ -9,9 +9,12 @@
 @class AppDelegate, DetailViewController;
 
 @interface Tags : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-    NSMutableArray *tableData;
-    NSArray *allTags;
     int sorted;
+    NSMutableArray *searchResults;
+    NSArray *allTerms;
+    NSArray *sections;
+    NSMutableArray *categories;
+    NSArray *tableData; // tmp table to populate tableView w/ either categories or all terms
 }
 
 @property (nonatomic, strong) AppDelegate *appDelegate;

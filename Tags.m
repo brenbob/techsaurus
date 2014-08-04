@@ -16,6 +16,8 @@
 }
 @end
 
+bool isFullTable = 0;
+
 @implementation Tags
 @synthesize appDelegate;
 
@@ -35,13 +37,12 @@
     
     
     appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    self->allTags = [[NSArray alloc] init];
     
     if (IS_OS_7_OR_LATER) {
         self.automaticallyAdjustsScrollViewInsets = NO; // Avoid the top UITextView space
     }
     
-    [self requestTags];
+    [self requestTerms];
     sorted = 1; // table is initially sorted ASC order
     
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
@@ -55,11 +56,11 @@
 
 #pragma mark data methods
 
--(void)requestTags
+-(void)requestTerms
 {
     NSString *tagsUrl = [Common getUrl:@"tagsUrl" :@""];
     NSURL *url = [NSURL URLWithString:tagsUrl];
-    NSLog(@"url = %@", url);
+//    NSLog(@"url = %@", url);
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     //AFNetworking asynchronous url request
@@ -68,9 +69,12 @@
                                          initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        allTags = [responseObject objectForKey:@"Tags"];
+        allTerms = [responseObject objectForKey:@"Tags"];
+        sections = [Common getSections:allTerms withKey:@"tag"];
+
         // on initial launch, show high-level categories
         [self getCategories];
+        self->tableData = categories; // display categories in tableview on initial load
         [self.tableView reloadData];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -95,12 +99,42 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    if (isFullTable) {
+        return [sections count];
+    } else {
+        return 1;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (isFullTable) {
+        return 20.0;
+    } else {
+        return 0;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (isFullTable) {
+        UILabel *header = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 0.0, [[UIScreen mainScreen] bounds].size.width-40, 20.0)];
+        header.font = [UIFont systemFontOfSize:10.0];
+        header.textAlignment = NSTextAlignmentCenter ;
+        header.backgroundColor = [UIColor lightGrayColor];
+        header.textColor = [UIColor whiteColor];
+        header.text = [sections objectAtIndex:section][0];
+        return header;
+    } else {
+        return nil;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self->tableData count];
+    if (isFullTable) {
+        return [(NSNumber *)[sections objectAtIndex:section][2] intValue];
+    } else {
+        return [self->tableData count];
+    }
 }
 
 // tell our table what kind of cell to use and its title for the given row
@@ -113,7 +147,16 @@
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"any-cell"];
         
 	}
-	cell.textLabel.text = [[self->tableData objectAtIndex:indexPath.row] valueForKey:@"tag"];
+    
+    
+    NSArray* item = [tableData objectAtIndex:indexPath.row];
+    if (isFullTable) {
+        // add indexPath.row to starting index of current section
+        int itemIndex = [(NSNumber *)[sections objectAtIndex:indexPath.section][1] intValue] + indexPath.row;
+        item = [tableData objectAtIndex:itemIndex];
+    }
+    
+	cell.textLabel.text = [item valueForKey:@"tag"];
 	cell.textLabel.font = [UIFont systemFontOfSize:14];
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -138,11 +181,11 @@
 
 - (IBAction)switchTable:(id)sender {
     if ([sender selectedSegmentIndex] == 0) {
-        [self getCategories];
+        self->tableData = self->categories;
     } else {
-        self->tableData = [[NSMutableArray alloc] init];
-        self->tableData = [self->allTags mutableCopy];
+        self->tableData = self->allTerms;
     }
+    isFullTable = [sender selectedSegmentIndex];
     [self.tableView reloadData];
 }
 
@@ -163,19 +206,21 @@
     NSArray *sortDescriptors = @[tagDescriptor];
     NSArray *sortedArray = [self->tableData sortedArrayUsingDescriptors:sortDescriptors];
     self->tableData = [sortedArray mutableCopy];
+    sections = [Common getSections:tableData withKey:@"tag"];
     [self.tableView reloadData];
 }
 
 -(void)getCategories {
     
-    self->tableData = [[NSMutableArray alloc] init];
-    for (int i=0; i < [self->allTags count]; i++) {
-        int cat = [[self->allTags[i] valueForKey:@"isCat"] intValue];
+    self->categories = [[NSMutableArray alloc] init];
+    for (int i=0; i < [self->allTerms count]; i++) {
+        int cat = [[self->allTerms[i] valueForKey:@"isCat"] intValue];
         if (cat > 0) {
-            [self->tableData addObject:self->allTags[i]];
+            [self->categories addObject:self->allTerms[i]];
         }
     }
     
 }
+
 
 @end

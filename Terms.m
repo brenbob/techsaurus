@@ -49,7 +49,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.title = @"Tech Words";
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
@@ -76,7 +75,7 @@
         searchResults = [NSMutableArray arrayWithCapacity:[allTerms count]];
 
         appDelegate.allTerms = allTerms; // store in appdelegate for use in other views
-        sections = [self getSections:allTerms];
+        sections = [Common getSections:allTerms withKey:@"title"];
         [self.tableView reloadData];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -85,42 +84,6 @@
     [operation start];
 }
 
--(NSMutableArray* )getSections:(NSArray*)allItems
-{
-    sections = nil;
-     NSMutableArray *tmpSections = [[NSMutableArray alloc] init];
-
-     int sectionStart = 0;
-     int sectionCount = 1;
-     NSString *tmpTitle = nil;
-     NSString *sectionTitle = nil;
-        
-     for (int i=0; i < [allItems count]; i++) {
-     // get first letter of term as section header
-
-         tmpTitle = [[[allItems[i] valueForKey:@"title"] substringToIndex:1] uppercaseString];
-         if ([tmpTitle isEqualToString:sectionTitle]) {
-             // section has 2 or more items, so increment counter
-             sectionCount++;
-         } else  {
-             // populate sections array and reset counters
-             if ([sectionTitle length] > 0) {
-                 [tmpSections addObject:[NSArray arrayWithObjects:sectionTitle, [NSNumber numberWithInteger:sectionStart], [NSNumber numberWithInteger:sectionCount], nil]];
-             }
-             sectionStart = i;
-             sectionTitle = tmpTitle;
-             sectionCount = 1;
-             
-         }
-         if (i == [allItems count]-1) {
-             // last item in parent array
-             [tmpSections addObject:[NSArray arrayWithObjects:sectionTitle, [NSNumber numberWithInteger:sectionStart], [NSNumber numberWithInteger:sectionCount], nil]];
-         }
-
-     }
-    return tmpSections;
-    
-}
 
 #pragma mark cleanup
 
@@ -224,7 +187,7 @@
     NSArray *sortDescriptors = @[titleDescriptor];
     NSArray *sortedArray = [allTerms sortedArrayUsingDescriptors:sortDescriptors];
     allTerms = sortedArray;
-    sections = [self getSections:allTerms];
+    sections = [Common getSections:allTerms withKey:@"title"];
     [self.tableView reloadData];
 }
 
@@ -259,7 +222,7 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    // Remove exustubg objects from the filtered search array
+    // Remove existing objects from the filtered search array
     [searchResults removeAllObjects];
     
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchText];

@@ -16,5 +16,6 @@
 + (NSString *)stringFromDate:(NSDate*)tmpDate;
 + (NSString *)getShortDate:(NSString*)tmpDate;
 + (NSString *)getUrl:(NSString*)key :(NSString*)tag;
++ (NSMutableArray* )getSections:(NSArray*)allItems withKey:(NSString*)key;
 
 @end

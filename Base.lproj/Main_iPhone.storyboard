@@ -44,7 +44,7 @@
             </objects>
             <point key="canvasLocation" x="-537" y="149"/>
         </scene>
-        <!--Terms - Tech Words-->
+        <!--Terms - Techsaurus-->
         <scene sceneID="2NW-Mo-mlR">
             <objects>
                 <viewController id="iVc-4H-Cum" customClass="Terms" sceneMemberID="viewController">
@@ -84,7 +84,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Terms" id="UyV-30-aTW"/>
-                    <navigationItem key="navigationItem" title="Tech Words" id="c0b-GF-vzI">
+                    <navigationItem key="navigationItem" title="Techsaurus" id="c0b-GF-vzI">
                         <barButtonItem key="backBarButtonItem" title="Back" id="dYL-H5-u01"/>
                         <barButtonItem key="rightBarButtonItem" image="sort_up_44.png" id="FU7-Ds-kvo">
                             <connections>
@@ -401,7 +401,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="city, state, or zip" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="g0c-f2-W2h" userLabel="loc">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="city, state, or zip" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="g0c-f2-W2h" userLabel="loc">
                                 <rect key="frame" x="20" y="141" width="200" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -417,7 +417,7 @@
                                     <action selector="requestJobs:" destination="4cY-JN-mvU" eventType="touchUpInside" id="vMa-5d-DlF"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="faY-wS-Nwu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="faY-wS-Nwu">
                                 <rect key="frame" x="20" y="179" width="280" height="213"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -454,14 +454,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" preferredMaxLayoutWidth="29" id="Bsd-DH-GOo">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="left" horizontalCompressionResistancePriority="500" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" preferredMaxLayoutWidth="29" id="Bsd-DH-GOo">
                                                     <rect key="frame" x="15" y="13" width="29" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jRa-gZ-fQX">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="left" horizontalCompressionResistancePriority="1000" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jRa-gZ-fQX">
                                                     <rect key="frame" x="221" y="11" width="44" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -499,7 +499,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="t48-Kb-x5Y" secondAttribute="bottom" constant="50" id="c1B-9K-Vg4"/>
+                            <constraint firstItem="t48-Kb-x5Y" firstAttribute="top" secondItem="faY-wS-Nwu" secondAttribute="bottom" constant="4" id="df6-bR-PSt"/>
                             <constraint firstAttribute="bottom" secondItem="DF3-f0-Prq" secondAttribute="bottom" constant="44" id="xkc-u0-FSD"/>
+                            <constraint firstItem="faY-wS-Nwu" firstAttribute="top" secondItem="g0c-f2-W2h" secondAttribute="bottom" constant="8" id="zbg-Uk-EMI"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Salaries" id="bsf-vY-VG0"/>
