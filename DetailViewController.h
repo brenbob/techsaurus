@@ -13,6 +13,7 @@
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate, DWTagListDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) id detailItem;
+@property (nonatomic, strong) AppDelegate *appDelegate;
 
 @property (strong, nonatomic) IBOutlet UITextView *description;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

@@ -59,7 +59,7 @@
 {
     NSString *tagsUrl = [Common getUrl:@"tagsUrl" :@""];
     NSURL *url = [NSURL URLWithString:tagsUrl];
-    NSLog(@"url = %@",url);
+    NSLog(@"url = %@", url);
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     //AFNetworking asynchronous url request
@@ -131,7 +131,6 @@
 {
     
     if ([[segue identifier] isEqualToString:@"showByTag"]) {
-        self.title = @"Back";
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         [[segue destinationViewController] setSelectedTag:[[self->tableData objectAtIndex:indexPath.row] valueForKey:@"tag"]];
     }

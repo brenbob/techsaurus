@@ -12,15 +12,17 @@
 
 @property (nonatomic, strong) AppDelegate *appDelegate;
 @property (nonatomic, strong) IBOutlet UITableView	*tableView;
-@property (nonatomic, strong) IBOutlet UISegmentedControl *btnJobSite;
-@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *uiLoading;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *uiLoading;
+@property (nonatomic, weak) IBOutlet UITextField *searchTerm;
+@property (nonatomic, weak) IBOutlet UITextField *searchLocation;
+@property (nonatomic, strong) IBOutlet UILabel *updated;
+@property (nonatomic, weak) IBOutlet UIButton *source;
 
-@property (nonatomic, strong) NSString *searchTerm;
+@property (nonatomic, weak) NSString *keyword;
+@property (nonatomic, strong) NSMutableArray *salaries;
 
-@property (nonatomic, strong) NSMutableArray *jobsAll;
-@property (nonatomic, strong) NSArray *jobsForSite;
-
-- (IBAction)switchJobSite:(id)sender;
+- (IBAction)requestJobs:(id)sender;
 - (IBAction)loadJobAgent;
+- (IBAction)linkToSource;
 
 @end

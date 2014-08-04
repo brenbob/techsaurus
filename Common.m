@@ -23,7 +23,6 @@
 }
 
 + (NSString *)getUrl:(NSString*)key :(NSString*)tag {
-    NSLog(@"key = %@",key);
 
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSString *urlString = [appDelegate.configuration objectForKey:key];
@@ -39,7 +38,6 @@
 #else
     urlString = [NSString stringWithFormat:@"%@%@",[appDelegate.configuration objectForKey:@"apiDomainProd"],urlString];
 #endif
-    NSLog(@"urlString = %@",urlString);
 
     return urlString;
 

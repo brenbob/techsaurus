@@ -58,7 +58,6 @@ int sorted = 1;
 {
     NSString *termsUrl = [Common getUrl:@"termsUrl" :tag];
     NSURL *url = [NSURL URLWithString:termsUrl];
-    NSLog(@"url = %@",url);
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     //AFNetworking asynchronous url request

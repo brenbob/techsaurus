@@ -39,6 +39,7 @@
     [super viewDidLoad];
     
     self.title = [self.detailItem valueForKey:@"title"];
+	_appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [Common formatTextView:_description :nil];
     
     if (_detailItem) {
@@ -47,17 +48,17 @@
     
     // populate resources table
     _resources = [[NSMutableArray alloc] init];
-    [_resources addObjectsFromArray:[self.detailItem objectForKey:@"resources"]];
-    [_resources addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"link", @"Jobs", @"title", nil]];
-    [_resources addObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"http://www.quora.com/search?q=%@",self.title], @"link", @"Quora", @"title", nil]];
     
-    if (_resources) {
+    for (NSString* key in [self.appDelegate.configuration objectForKey:@"resourceLinks"]) {
+        NSString* resourceUrl = [[[self.appDelegate.configuration objectForKey:@"resourceLinks"] objectForKey:key] stringByReplacingOccurrencesOfString:@"<tag>" withString:self.title];
+        [_resources addObject:[NSDictionary dictionaryWithObjectsAndKeys:resourceUrl, @"link", key, @"title", nil]];
+    }
+    [_resources addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"link", @"Salaries", @"title", nil]];
+    [_resources addObjectsFromArray:[self.detailItem objectForKey:@"resources"]];
+    
         _tableView.dataSource = self;
         [_tableView reloadData];
         _tableView.hidden = NO;
-    } else {
-        _tableView.hidden = YES;
-    }
 
     
     if (IS_OS_7_OR_LATER) {
@@ -69,7 +70,6 @@
     
 	rightBarButtonItem.title = NSLocalizedString(@"STR_SHARE", nil);
 	self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -101,7 +101,7 @@
     if ([[segue identifier] isEqualToString:@"showByTag"]) {
         [[segue destinationViewController] setSelectedTag:_selectedTag];
     } else  if ([[segue identifier] isEqualToString:@"showJobs"]) {
-        [[segue destinationViewController] setSearchTerm:self.title];
+        [[segue destinationViewController] setKeyword:self.title];
     }
 }
 
@@ -121,19 +121,6 @@
 
 #pragma mark - Split view
 
-- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
-{
-    barButtonItem.title = NSLocalizedString(@"Master", @"Master");
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    self.masterPopoverController = popoverController;
-}
-
-- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-    self.masterPopoverController = nil;
-}
 
 #pragma mark - Table View
 
@@ -175,7 +162,7 @@
 {
     NSArray *aItem = _resources[indexPath.row];
     
-    if ([[aItem valueForKey:@"title"] isEqualToString:@"Jobs"]) {
+    if ([[aItem valueForKey:@"title"] isEqualToString:@"Salaries"]) {
         [self performSegueWithIdentifier: @"showJobs" sender: self];
     } else if ([[aItem valueForKey:@"link"] length] > 0) {
         // item has a link

@@ -61,9 +61,10 @@
                                    @"termsUrl",                @"termsUrl",
                                    @"tagsUrl",                 @"tagsUrl",
                                    @"categoriesUrl",           @"categoriesUrl",
-                                   @"jobSiteList",             @"jobSiteList",
-                                   @"jobsSearchUrl",           @"jobsSearchUrl",
+                                   @"trendsUrl",               @"trendsUrl",
                                    @"saladUrl",                @"saladUrl",
+                                   @"resourceLinks",           @"resourceLinks",
+                                   @"simplyHiredUrl",          @"simplyHiredUrl",
                                    nil];
         
         
