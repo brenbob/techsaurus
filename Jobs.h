@@ -15,14 +15,13 @@
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *uiLoading;
 @property (nonatomic, weak) IBOutlet UITextField *searchTerm;
 @property (nonatomic, weak) IBOutlet UITextField *searchLocation;
-@property (nonatomic, strong) IBOutlet UILabel *updated;
-@property (nonatomic, weak) IBOutlet UIButton *source;
+@property (nonatomic, strong) IBOutlet UIButton *btnSimplyHired;
+@property (nonatomic, strong) IBOutlet UIButton *btnJobAgent;
 
 @property (nonatomic, weak) NSString *keyword;
 @property (nonatomic, strong) NSMutableArray *salaries;
 
 - (IBAction)requestJobs:(id)sender;
-- (IBAction)loadJobAgent;
-- (IBAction)linkToSource;
+- (IBAction)linkToSite:(id)sender;
 
 @end

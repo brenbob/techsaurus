@@ -30,10 +30,9 @@ int sorted = 1;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
-    self.title = selectedTag.capitalizedString;
-        
+    self.navigationItem.titleView = [self setCustomTitle:selectedTag :@"Tags related to"];
+
     if (IS_OS_7_OR_LATER) {
         self.automaticallyAdjustsScrollViewInsets = NO; // Avoid the top UITextView space
     }
@@ -50,6 +49,24 @@ int sorted = 1;
 {
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
+-(UIView*)setCustomTitle:(NSString*)title :(NSString*)subtitle {
+    // make custom title and sub-title
+    UILabel *sub = [[UILabel alloc] initWithFrame:CGRectMake(0,0,160,12)];
+    sub.textColor = [UIColor darkGrayColor];
+    sub.font = [UIFont systemFontOfSize:10];
+    sub.textAlignment = NSTextAlignmentCenter;
+    sub.text = subtitle;
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,8,160,30)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = title.capitalizedString;
+    
+    UIView *tv = [[UIView alloc] initWithFrame:CGRectMake(0,0,160,32)];
+    [tv addSubview:label];
+    [tv addSubview:sub];
+    return tv;
 }
 
 #pragma mark data methods

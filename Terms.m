@@ -113,7 +113,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UILabel *header = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 0.0, [[UIScreen mainScreen] bounds].size.width-40, 20.0)];
-    header.font = [UIFont systemFontOfSize:10.0];
+    header.font = [UIFont systemFontOfSize:12.0];
     header.textAlignment = NSTextAlignmentCenter ;
     header.backgroundColor = [UIColor lightGrayColor];
     header.textColor = [UIColor whiteColor];
@@ -143,7 +143,7 @@
         
 	}
     
-    // Display recipe in the table cell
+    // same code used for main table view and search results table view
     NSArray *item = nil;
     if (tView == self.searchDisplayController.searchResultsTableView) {
         item = [searchResults objectAtIndex:indexPath.row];
@@ -164,7 +164,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"table = %@",tableView);
 
     [self performSegueWithIdentifier: @"showDetail" sender: tableView];
 }
@@ -225,7 +224,7 @@
     // Remove existing objects from the filtered search array
     [searchResults removeAllObjects];
     
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"title beginswith[c] %@", searchText];
     searchResults = [[allTerms filteredArrayUsingPredicate:resultPredicate] mutableCopy];
 }
 

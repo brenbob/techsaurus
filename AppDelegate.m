@@ -65,6 +65,7 @@
                                    @"saladUrl",                @"saladUrl",
                                    @"resourceLinks",           @"resourceLinks",
                                    @"simplyHiredUrl",          @"simplyHiredUrl",
+                                   @"jobAgentUrl",             @"jobAgentUrl",
                                    nil];
         
         

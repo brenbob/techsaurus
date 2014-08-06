@@ -71,6 +71,7 @@ bool isFullTable = 0;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         allTerms = [responseObject objectForKey:@"Tags"];
         sections = [Common getSections:allTerms withKey:@"tag"];
+        searchResults = [NSMutableArray arrayWithCapacity:[allTerms count]];
 
         // on initial launch, show high-level categories
         [self getCategories];
@@ -99,25 +100,25 @@ bool isFullTable = 0;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (isFullTable) {
-        return [sections count];
-    } else {
+    if (tableView == self.searchDisplayController.searchResultsTableView || !isFullTable) {
         return 1;
+    } else {
+        return [sections count];
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (isFullTable) {
-        return 20.0;
-    } else {
+    if (tableView == self.searchDisplayController.searchResultsTableView || !isFullTable) {
         return 0;
+    } else {
+        return 20.0;
     }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (isFullTable) {
+    if (isFullTable && tableView != self.searchDisplayController.searchResultsTableView) {
         UILabel *header = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 0.0, [[UIScreen mainScreen] bounds].size.width-40, 20.0)];
-        header.font = [UIFont systemFontOfSize:10.0];
+        header.font = [UIFont systemFontOfSize:12.0];
         header.textAlignment = NSTextAlignmentCenter ;
         header.backgroundColor = [UIColor lightGrayColor];
         header.textColor = [UIColor whiteColor];
@@ -130,7 +131,9 @@ bool isFullTable = 0;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (isFullTable) {
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchResults count];
+    } else if (isFullTable) {
         return [(NSNumber *)[sections objectAtIndex:section][2] intValue];
     } else {
         return [self->tableData count];
@@ -148,9 +151,10 @@ bool isFullTable = 0;
         
 	}
     
-    
     NSArray* item = [tableData objectAtIndex:indexPath.row];
-    if (isFullTable) {
+    if (tView == self.searchDisplayController.searchResultsTableView) {
+        item = [searchResults objectAtIndex:indexPath.row];
+    } else if (isFullTable) {
         // add indexPath.row to starting index of current section
         int itemIndex = [(NSNumber *)[sections objectAtIndex:indexPath.section][1] intValue] + indexPath.row;
         item = [tableData objectAtIndex:itemIndex];
@@ -164,18 +168,27 @@ bool isFullTable = 0;
 }
 
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier: @"showByTag" sender: self];
+    [self performSegueWithIdentifier: @"showByTag" sender: tableView];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
     if ([[segue identifier] isEqualToString:@"showByTag"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [[segue destinationViewController] setSelectedTag:[[self->tableData objectAtIndex:indexPath.row] valueForKey:@"tag"]];
+        NSArray *selectedItem = nil;
+
+        if(sender == self.searchDisplayController.searchResultsTableView) {
+            NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            selectedItem = [searchResults objectAtIndex:indexPath.row];
+            // dismiss search results view
+            [self.searchDisplayController setActive:NO animated:NO];
+        } else {
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            selectedItem = [tableData objectAtIndex:indexPath.row];
+        }
+        [[segue destinationViewController] setSelectedTag:[selectedItem valueForKey:@"tag"]];
     }
 }
 
@@ -221,6 +234,47 @@ bool isFullTable = 0;
     }
     
 }
+
+#pragma mark - UISearchDisplayController Delegate Methods
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    // Remove existing objects from the filtered search array
+    [searchResults removeAllObjects];
+    
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"tag beginswith[c] %@", searchText];
+    searchResults = [[tableData filteredArrayUsingPredicate:resultPredicate] mutableCopy];
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
+-(void)setCorrectFrames
+{
+    // Here we set the search_results frame to avoid overlay bug and ensure search bar remains visible
+    CGRect searchDisplayerFrame = self.searchDisplayController.searchResultsTableView.superview.frame;
+    searchDisplayerFrame.origin.y = CGRectGetMaxY(self.searchDisplayController.searchBar.frame);
+    searchDisplayerFrame.size.height -= searchDisplayerFrame.origin.y;
+    self.searchDisplayController.searchResultsTableView.superview.frame = searchDisplayerFrame;
+}
+
+-(void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+{
+    [self setCorrectFrames];
+}
+
+-(void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller
+{
+    [self setCorrectFrames];
+}
+
 
 
 @end

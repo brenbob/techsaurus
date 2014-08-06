@@ -17,7 +17,7 @@
 
 @implementation Jobs
 
-NSString *curLocation = @"Seattle, WA";
+NSString *curLocation = @"";
 NSString *searchTermPrev = @"";
 
 
@@ -26,12 +26,10 @@ NSString *searchTermPrev = @"";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Salaries";
 	_appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     self.tableView.hidden = YES;
-    self.updated.hidden = YES;
-    self.source.hidden = YES;
-
+    self.btnSimplyHired.hidden = YES;
+    self.btnJobAgent.hidden = YES;
 
 }
 
@@ -63,11 +61,11 @@ NSString *searchTermPrev = @"";
 #endif
     
 	NSString *query = self.searchTerm.text;
-    if (![query integerValue]) {
-        query = [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    }
     searchUrl = [searchUrl stringByReplacingOccurrencesOfString:@"<kw>" withString:query];
     searchUrl = [searchUrl stringByReplacingOccurrencesOfString:@"<loc>" withString:_searchLocation.text];
+    searchUrl = [searchUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSLog(@"searchUrl = %@",searchUrl);
     
     NSURL *url = [NSURL URLWithString:searchUrl];
     
@@ -80,10 +78,9 @@ NSString *searchTermPrev = @"";
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         self.salaries = responseObject;
         // set the 'updated' label text
-        self.updated.text = [_salaries[[_salaries count]-2 ] valueForKey:@"updated"];
         self.tableView.hidden = NO;
-        self.updated.hidden = NO;
-        self.source.hidden = NO;
+        self.btnSimplyHired.hidden = NO;
+        self.btnJobAgent.hidden = NO;
 
         [self.tableView reloadData];
         [self.uiLoading stopAnimating];
@@ -104,32 +101,56 @@ NSString *searchTermPrev = @"";
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return [self.salaries count];
+    if (section == 0) {
+        return 1;
+    } else {
+        return [self.salaries count]-1;
+    }
     
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 0;
+    } else {
+        return 20.0;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section > 0) {
+        return @"  Avg. salary for related jobs";
+    } else {
+        return nil;
+    }
+}
+
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *CellIdentifier = (indexPath.row == 0) ? @"avg" : @"Cell";
+    NSString *CellIdentifier = (indexPath.section == 0) ? @"avg" : @"Cell";
     
     UITableViewCell *cell = [tView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    NSArray *tmpJob = [self.salaries objectAtIndex:indexPath.row];
+    // add indexPath.row to starting index of current section
+    int indexForSection = indexPath.row + indexPath.section; // section 1 starts at index 1
+    
+    NSArray *tmpJob = [self.salaries objectAtIndex:indexForSection];
 
     if ([tmpJob valueForKey:@"title"]) {
         UILabel *label;
         
-        NSString *leftText = (indexPath.row == 0) ? [NSString stringWithFormat:@"Avg. '%@' salaries", [tmpJob valueForKey:@"title"]] : [tmpJob valueForKey:@"title"];
+        NSString *leftText = (indexPath.section == 0) ? [NSString stringWithFormat:@"Avg. '%@' salaries", [tmpJob valueForKey:@"title"]] : [tmpJob valueForKey:@"title"];
         label = (UILabel *)[cell viewWithTag:1];
         label.text = leftText;
         
@@ -140,9 +161,13 @@ NSString *searchTermPrev = @"";
     return cell;
 }
 
--(IBAction)linkToSource {
+-(IBAction)linkToSite:(id)sender {
 
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self.appDelegate.configuration objectForKey:@"simplyHiredUrl"]]];
+    if (sender == _btnSimplyHired) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self.appDelegate.configuration objectForKey:@"simplyHiredUrl"]]];
+    } else if (sender == _btnJobAgent) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self.appDelegate.configuration objectForKey:@"jobAgentUrl"]]];
+    }
 
 }
 

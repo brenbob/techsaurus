@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE1EC6D31991F1FE00CA8164 /* jobagent_icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1EC6D21991F1FE00CA8164 /* jobagent_icon_72.png */; };
 		CE21BE63196653C2004008AB /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE62196653C2004008AB /* Common.m */; };
 		CE21BE65196653F1004008AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE64196653F1004008AB /* main.m */; };
 		CE21BE681966541B004008AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE671966541B004008AB /* AppDelegate.m */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE1EC6D21991F1FE00CA8164 /* jobagent_icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jobagent_icon_72.png; path = /Users/brenden/workspace/iOS/techlingo/../jobagent/Resources/jobagent_icon_72.png; sourceTree = "<absolute>"; };
 		CE21BE61196653C2004008AB /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = SOURCE_ROOT; };
 		CE21BE62196653C2004008AB /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = SOURCE_ROOT; };
 		CE21BE64196653F1004008AB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
@@ -222,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5367DA1975F97500C26458 /* Images.xcassets */,
+				CE1EC6D21991F1FE00CA8164 /* jobagent_icon_72.png */,
 				CE3FE2321977858900005552 /* refresh.png */,
 				CE21BE7D1966576F004008AB /* sort_up_44.png */,
 				CE21BE7819665626004008AB /* Main_iPhone.storyboard */,
@@ -341,6 +344,7 @@
 				CE3FE2331977858900005552 /* refresh.png in Resources */,
 				CE21BE7E1966576F004008AB /* sort_up_44.png in Resources */,
 				CE21BE7A19665626004008AB /* Main_iPhone.storyboard in Resources */,
+				CE1EC6D31991F1FE00CA8164 /* jobagent_icon_72.png in Resources */,
 				CE5367DB1975F97500C26458 /* Images.xcassets in Resources */,
 				CE21BE81196657C1004008AB /* InfoPlist.strings in Resources */,
 			);

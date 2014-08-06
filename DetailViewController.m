@@ -53,7 +53,7 @@
         NSString* resourceUrl = [[[self.appDelegate.configuration objectForKey:@"resourceLinks"] objectForKey:key] stringByReplacingOccurrencesOfString:@"<tag>" withString:self.title];
         [_resources addObject:[NSDictionary dictionaryWithObjectsAndKeys:resourceUrl, @"link", key, @"title", nil]];
     }
-    [_resources addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"link", @"Salaries", @"title", nil]];
+    [_resources addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"link", @"Jobs", @"title", nil]];
     [_resources addObjectsFromArray:[self.detailItem objectForKey:@"resources"]];
     
         _tableView.dataSource = self;
@@ -97,7 +97,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
+    NSLog(@"segue = %@",[segue identifier]);
     if ([[segue identifier] isEqualToString:@"showByTag"]) {
         [[segue destinationViewController] setSelectedTag:_selectedTag];
     } else  if ([[segue identifier] isEqualToString:@"showJobs"]) {
@@ -162,7 +162,7 @@
 {
     NSArray *aItem = _resources[indexPath.row];
     
-    if ([[aItem valueForKey:@"title"] isEqualToString:@"Salaries"]) {
+    if ([[aItem valueForKey:@"title"] isEqualToString:@"Jobs"]) {
         [self performSegueWithIdentifier: @"showJobs" sender: self];
     } else if ([[aItem valueForKey:@"link"] length] > 0) {
         // item has a link

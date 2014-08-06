@@ -8,7 +8,7 @@
 
 @class AppDelegate, DetailViewController;
 
-@interface Tags : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface Tags : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate> {
     int sorted;
     NSMutableArray *searchResults;
     NSArray *allTerms;
@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *btnSwitchTable;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *btnSortTable;
+@property IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
 - (IBAction)sortTable;
