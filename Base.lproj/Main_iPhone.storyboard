@@ -203,7 +203,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="redraw" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fgQ-zn-kOc">
+                            <tableView clipsSubviews="YES" contentMode="redraw" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fgQ-zn-kOc">
                                 <rect key="frame" x="0.0" y="74" width="320" height="351"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -252,7 +252,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="250" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zut-wh-mpq" userLabel="tableView">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="250" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zut-wh-mpq" userLabel="tableView">
                                 <rect key="frame" x="0.0" y="228" width="320" height="252"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -260,7 +260,7 @@
                                     <outlet property="delegate" destination="Ah7-4n-0Wa" id="oRK-gh-1XP"/>
                                 </connections>
                             </tableView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="500" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLb-yW-YbX" userLabel="description">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="500" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLb-yW-YbX" userLabel="description">
                                 <rect key="frame" x="10" y="28" width="300" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -290,6 +290,7 @@
                         <outlet property="tableView" destination="zut-wh-mpq" id="0hB-vL-7H5"/>
                         <segue destination="gyv-wM-K7M" kind="push" identifier="showByTag" id="v9T-24-rWc"/>
                         <segue destination="4cY-JN-mvU" kind="push" identifier="showJobs" id="Lo0-Zb-JrZ"/>
+                        <segue destination="1oP-jc-Fub" kind="push" identifier="showWebView" id="19T-t9-JaP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
@@ -400,19 +401,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="keyword or skill" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="BFD-p3-iOA" userLabel="kw">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="keyword or skill" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="BFD-p3-iOA" userLabel="kw">
                                 <rect key="frame" x="10" y="77" width="122" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="city, state, or zip" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="g0c-f2-W2h" userLabel="loc">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="city, state, or zip" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="g0c-f2-W2h" userLabel="loc">
                                 <rect key="frame" x="146" y="77" width="127" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPa-Xy-mJJ">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPa-Xy-mJJ">
                                 <rect key="frame" x="276" y="77" width="44" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -425,7 +426,7 @@
                                     <action selector="requestJobs:" destination="4cY-JN-mvU" eventType="touchUpInside" id="vMa-5d-DlF"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="faY-wS-Nwu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="faY-wS-Nwu">
                                 <rect key="frame" x="0.0" y="116" width="320" height="279"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -574,6 +575,60 @@
             </objects>
             <point key="canvasLocation" x="-537" y="191"/>
         </scene>
+        <!--WebVC - Detail-->
+        <scene sceneID="jBZ-D6-Z3h">
+            <objects>
+                <viewController title="Detail" id="1oP-jc-Fub" customClass="WebVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="srS-zH-u4F"/>
+                        <viewControllerLayoutGuide type="bottom" id="m64-Ef-iEb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" verticalCompressionResistancePriority="250" id="afg-GY-Jt4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YTN-wP-2Za">
+                                <rect key="frame" x="13" y="24" width="287" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="1oP-jc-Fub" id="BXq-12-uFc"/>
+                                </connections>
+                            </textField>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cBa-BV-62t">
+                                <rect key="frame" x="10" y="54" width="300" height="382"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="1oP-jc-Fub" id="tsl-CB-fN4"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cBa-BV-62t" firstAttribute="leading" secondItem="afg-GY-Jt4" secondAttribute="leading" constant="10" id="54Z-cy-5kk"/>
+                            <constraint firstAttribute="trailing" secondItem="cBa-BV-62t" secondAttribute="trailing" constant="10" id="O4F-Hs-l1s"/>
+                            <constraint firstAttribute="trailing" secondItem="YTN-wP-2Za" secondAttribute="trailing" constant="20" symbolic="YES" id="P3S-Il-QQA"/>
+                            <constraint firstItem="m64-Ef-iEb" firstAttribute="top" secondItem="cBa-BV-62t" secondAttribute="bottom" constant="44" id="bPV-73-OdZ"/>
+                            <constraint firstItem="YTN-wP-2Za" firstAttribute="leading" secondItem="afg-GY-Jt4" secondAttribute="leading" constant="13" id="clS-tV-QUe"/>
+                            <constraint firstItem="YTN-wP-2Za" firstAttribute="top" secondItem="srS-zH-u4F" secondAttribute="bottom" constant="4" id="fNi-wR-UAh"/>
+                            <constraint firstItem="cBa-BV-62t" firstAttribute="top" secondItem="YTN-wP-2Za" secondAttribute="bottom" id="opd-dI-3Qy"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hhI-l1-0CR">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Ipv-4r-p0v"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="urlField" destination="YTN-wP-2Za" id="6Lm-e0-Ftu"/>
+                        <outlet property="webView" destination="cBa-BV-62t" id="R4j-lR-LbH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nMQ-gp-PsL" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1416" y="881"/>
+        </scene>
     </scenes>
     <resources>
         <image name="refresh.png" width="44" height="44"/>
@@ -585,8 +640,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dHC-no-zCn"/>
+        <segue reference="v9T-24-rWc"/>
         <segue reference="KFu-6Z-ZYQ"/>
-        <segue reference="kQv-0e-Q1A"/>
+        <segue reference="Lo0-Zb-JrZ"/>
     </inferredMetricsTieBreakers>
 </document>

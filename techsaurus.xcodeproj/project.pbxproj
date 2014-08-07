@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE1EC6D31991F1FE00CA8164 /* jobagent_icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1EC6D21991F1FE00CA8164 /* jobagent_icon_72.png */; };
 		CE21BE63196653C2004008AB /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE62196653C2004008AB /* Common.m */; };
 		CE21BE65196653F1004008AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE64196653F1004008AB /* main.m */; };
 		CE21BE681966541B004008AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE21BE671966541B004008AB /* AppDelegate.m */; };
@@ -33,6 +32,7 @@
 		CE67B23619592574001FEA7F /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67B22C19592574001FEA7F /* AFURLResponseSerialization.m */; };
 		CE67B23719592574001FEA7F /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE67B22E19592574001FEA7F /* AFURLSessionManager.m */; };
 		CEA4FADB196A26D800B3F823 /* Jobs.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA4FADA196A26D800B3F823 /* Jobs.m */; };
+		CED3DDA41992E5D700D21FAC /* WebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CED3DDA21992E5D700D21FAC /* WebVC.m */; };
 		CEED3EE619589DB0002D1785 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEED3EE519589DB0002D1785 /* Foundation.framework */; };
 		CEED3EE819589DB0002D1785 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEED3EE719589DB0002D1785 /* CoreGraphics.framework */; };
 		CEED3EEA19589DB0002D1785 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEED3EE919589DB0002D1785 /* UIKit.framework */; };
@@ -53,7 +53,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CE1EC6D21991F1FE00CA8164 /* jobagent_icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = jobagent_icon_72.png; path = /Users/brenden/workspace/iOS/techlingo/../jobagent/Resources/jobagent_icon_72.png; sourceTree = "<absolute>"; };
 		CE21BE61196653C2004008AB /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = SOURCE_ROOT; };
 		CE21BE62196653C2004008AB /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = SOURCE_ROOT; };
 		CE21BE64196653F1004008AB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
@@ -96,7 +95,9 @@
 		CEA4FAD9196A26D800B3F823 /* Jobs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jobs.h; sourceTree = "<group>"; };
 		CEA4FADA196A26D800B3F823 /* Jobs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Jobs.m; sourceTree = "<group>"; };
 		CEBF44BB195EA14A00C8270B /* TermsByTagVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsByTagVC.h; sourceTree = "<group>"; };
-		CEED3EE219589DB0002D1785 /* techlingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = techlingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CED3DDA21992E5D700D21FAC /* WebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebVC.m; sourceTree = "<group>"; };
+		CED3DDA31992E5D700D21FAC /* WebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebVC.h; sourceTree = "<group>"; };
+		CEED3EE219589DB0002D1785 /* techsaurus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = techsaurus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEED3EE519589DB0002D1785 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CEED3EE719589DB0002D1785 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CEED3EE919589DB0002D1785 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -104,9 +105,9 @@
 		CEED3EF319589DB0002D1785 /* techlingo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "techlingo-Prefix.pch"; sourceTree = "<group>"; };
 		CEED3EFD19589DB0002D1785 /* Terms.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Terms.h; sourceTree = "<group>"; };
 		CEED3F0019589DB0002D1785 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		CEED3F0919589DB0002D1785 /* techlingoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = techlingoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEED3F0919589DB0002D1785 /* techsaurusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = techsaurusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEED3F0A19589DB0002D1785 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		CEED3F1219589DB0002D1785 /* techlingoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "techlingoTests-Info.plist"; sourceTree = "<group>"; };
+		CEED3F1219589DB0002D1785 /* techsaurusTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "techsaurusTests-Info.plist"; sourceTree = "<group>"; };
 		CEED3F1619589DB0002D1785 /* techlingoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = techlingoTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +194,8 @@
 				CE21BE6919665444004008AB /* Terms.m */,
 				CEA1B7081962176300F40A95 /* Salad.h */,
 				CE21BE6B1966547B004008AB /* Salad.m */,
+				CED3DDA31992E5D700D21FAC /* WebVC.h */,
+				CED3DDA21992E5D700D21FAC /* WebVC.m */,
 				CEED3EEB19589DB0002D1785 /* techlingo */,
 				CEED3F1019589DB0002D1785 /* techlingoTests */,
 				CEED3EE419589DB0002D1785 /* Frameworks */,
@@ -203,8 +206,8 @@
 		CEED3EE319589DB0002D1785 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CEED3EE219589DB0002D1785 /* techlingo.app */,
-				CEED3F0919589DB0002D1785 /* techlingoTests.xctest */,
+				CEED3EE219589DB0002D1785 /* techsaurus.app */,
+				CEED3F0919589DB0002D1785 /* techsaurusTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -224,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				CE5367DA1975F97500C26458 /* Images.xcassets */,
-				CE1EC6D21991F1FE00CA8164 /* jobagent_icon_72.png */,
 				CE3FE2321977858900005552 /* refresh.png */,
 				CE21BE7D1966576F004008AB /* sort_up_44.png */,
 				CE21BE7819665626004008AB /* Main_iPhone.storyboard */,
@@ -255,7 +257,7 @@
 		CEED3F1119589DB0002D1785 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CEED3F1219589DB0002D1785 /* techlingoTests-Info.plist */,
+				CEED3F1219589DB0002D1785 /* techsaurusTests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -263,9 +265,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CEED3EE119589DB0002D1785 /* techlingo */ = {
+		CEED3EE119589DB0002D1785 /* techsaurus */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEED3F1A19589DB0002D1785 /* Build configuration list for PBXNativeTarget "techlingo" */;
+			buildConfigurationList = CEED3F1A19589DB0002D1785 /* Build configuration list for PBXNativeTarget "techsaurus" */;
 			buildPhases = (
 				CEED3EDE19589DB0002D1785 /* Sources */,
 				CEED3EDF19589DB0002D1785 /* Frameworks */,
@@ -275,14 +277,14 @@
 			);
 			dependencies = (
 			);
-			name = techlingo;
+			name = techsaurus;
 			productName = techlingo;
-			productReference = CEED3EE219589DB0002D1785 /* techlingo.app */;
+			productReference = CEED3EE219589DB0002D1785 /* techsaurus.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CEED3F0819589DB0002D1785 /* techlingoTests */ = {
+		CEED3F0819589DB0002D1785 /* techsaurusTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CEED3F1D19589DB0002D1785 /* Build configuration list for PBXNativeTarget "techlingoTests" */;
+			buildConfigurationList = CEED3F1D19589DB0002D1785 /* Build configuration list for PBXNativeTarget "techsaurusTests" */;
 			buildPhases = (
 				CEED3F0519589DB0002D1785 /* Sources */,
 				CEED3F0619589DB0002D1785 /* Frameworks */,
@@ -293,9 +295,9 @@
 			dependencies = (
 				CEED3F0F19589DB0002D1785 /* PBXTargetDependency */,
 			);
-			name = techlingoTests;
+			name = techsaurusTests;
 			productName = techlingoTests;
-			productReference = CEED3F0919589DB0002D1785 /* techlingoTests.xctest */;
+			productReference = CEED3F0919589DB0002D1785 /* techsaurusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -315,7 +317,7 @@
 					};
 				};
 			};
-			buildConfigurationList = CEED3EDD19589DB0002D1785 /* Build configuration list for PBXProject "techlingo" */;
+			buildConfigurationList = CEED3EDD19589DB0002D1785 /* Build configuration list for PBXProject "techsaurus" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -329,8 +331,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CEED3EE119589DB0002D1785 /* techlingo */,
-				CEED3F0819589DB0002D1785 /* techlingoTests */,
+				CEED3EE119589DB0002D1785 /* techsaurus */,
+				CEED3F0819589DB0002D1785 /* techsaurusTests */,
 			);
 		};
 /* End PBXProject section */
@@ -344,7 +346,6 @@
 				CE3FE2331977858900005552 /* refresh.png in Resources */,
 				CE21BE7E1966576F004008AB /* sort_up_44.png in Resources */,
 				CE21BE7A19665626004008AB /* Main_iPhone.storyboard in Resources */,
-				CE1EC6D31991F1FE00CA8164 /* jobagent_icon_72.png in Resources */,
 				CE5367DB1975F97500C26458 /* Images.xcassets in Resources */,
 				CE21BE81196657C1004008AB /* InfoPlist.strings in Resources */,
 			);
@@ -369,6 +370,7 @@
 				CE67B23019592574001FEA7F /* AFHTTPRequestOperationManager.m in Sources */,
 				CE21BE681966541B004008AB /* AppDelegate.m in Sources */,
 				CE67B23419592574001FEA7F /* AFURLConnectionOperation.m in Sources */,
+				CED3DDA41992E5D700D21FAC /* WebVC.m in Sources */,
 				CE21BE6A19665444004008AB /* Terms.m in Sources */,
 				CE67B22F19592574001FEA7F /* AFHTTPRequestOperation.m in Sources */,
 				CE67B23519592574001FEA7F /* AFURLRequestSerialization.m in Sources */,
@@ -399,7 +401,7 @@
 /* Begin PBXTargetDependency section */
 		CEED3F0F19589DB0002D1785 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CEED3EE119589DB0002D1785 /* techlingo */;
+			target = CEED3EE119589DB0002D1785 /* techsaurus */;
 			targetProxy = CEED3F0E19589DB0002D1785 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -457,7 +459,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -491,7 +493,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -508,7 +510,7 @@
 				GCC_PREFIX_HEADER = "techlingo-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/techlingo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = techsaurus;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -524,7 +526,7 @@
 				GCC_PREFIX_HEADER = "techlingo-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/techlingo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = techsaurus;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -545,8 +547,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "techlingoTests/techlingoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "techlingoTests/techsaurusTests-Info.plist";
+				PRODUCT_NAME = techsaurusTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -563,8 +565,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "techlingo-Prefix.pch";
-				INFOPLIST_FILE = "techlingoTests/techlingoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "techlingoTests/techsaurusTests-Info.plist";
+				PRODUCT_NAME = techsaurusTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -573,7 +575,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		CEED3EDD19589DB0002D1785 /* Build configuration list for PBXProject "techlingo" */ = {
+		CEED3EDD19589DB0002D1785 /* Build configuration list for PBXProject "techsaurus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEED3F1819589DB0002D1785 /* Debug */,
@@ -582,7 +584,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEED3F1A19589DB0002D1785 /* Build configuration list for PBXNativeTarget "techlingo" */ = {
+		CEED3F1A19589DB0002D1785 /* Build configuration list for PBXNativeTarget "techsaurus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEED3F1B19589DB0002D1785 /* Debug */,
@@ -591,7 +593,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CEED3F1D19589DB0002D1785 /* Build configuration list for PBXNativeTarget "techlingoTests" */ = {
+		CEED3F1D19589DB0002D1785 /* Build configuration list for PBXNativeTarget "techsaurusTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CEED3F1E19589DB0002D1785 /* Debug */,

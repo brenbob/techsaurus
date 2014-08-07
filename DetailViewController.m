@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "TermsByTagVC.h"
 #import "Jobs.h"
+#import "WebVC.h"
 #import "Common.h"
 
 
@@ -102,7 +103,14 @@
         [[segue destinationViewController] setSelectedTag:_selectedTag];
     } else  if ([[segue identifier] isEqualToString:@"showJobs"]) {
         [[segue destinationViewController] setKeyword:self.title];
+    } else  if ([[segue identifier] isEqualToString:@"showWebView"]) {
+        // Assume self.view is the table view
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        NSArray *aItem = _resources[path.row];
+        [[segue destinationViewController] setRequestedUrl:[aItem valueForKey:@"link"]];
     }
+
+    
 }
 
 - (void)renderTags:(NSArray *)tagsArray {
@@ -166,7 +174,7 @@
         [self performSegueWithIdentifier: @"showJobs" sender: self];
     } else if ([[aItem valueForKey:@"link"] length] > 0) {
         // item has a link
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[aItem valueForKey:@"link"]]];
+        [self performSegueWithIdentifier: @"showWebView" sender: self];
     }
 }
 

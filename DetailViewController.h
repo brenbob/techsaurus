@@ -8,7 +8,7 @@
 
 #import "DWTagList.h"
 
-@class AppDelegate, TermsByTagVC, Jobs;
+@class AppDelegate, TermsByTagVC, Jobs, WebVC;
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate, DWTagListDelegate, UITableViewDelegate, UITableViewDataSource>
 

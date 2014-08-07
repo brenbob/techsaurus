@@ -4,12 +4,12 @@
 <dict>
 	<key>resourceLinks</key>
 	<dict>
+		<key>stackoverflow</key>
+		<string>http://stackoverflow.com/tags/&lt;tag&gt;/info</string>
 		<key>wikipedia</key>
 		<string>http://en.wikipedia.org/wiki/&lt;tag&gt;</string>
 		<key>quora</key>
 		<string>http://www.quora.com/search?q=&lt;tag&gt;</string>
-		<key>stackoverflow</key>
-		<string>http://stackoverflow.com/tags/&lt;tag&gt;/info</string>
 	</dict>
 	<key>simplyHiredUrl</key>
 	<string>http://www.simplyhired.com/salaries.html</string>

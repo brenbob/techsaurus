@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CEED3EE119589DB0002D1785"
-               BuildableName = "techlingo.app"
-               BlueprintName = "techlingo"
-               ReferencedContainer = "container:techlingo.xcodeproj">
+               BuildableName = "techsaurus.app"
+               BlueprintName = "techsaurus"
+               ReferencedContainer = "container:techsaurus.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CEED3F0819589DB0002D1785"
-               BuildableName = "techlingoTests.xctest"
-               BlueprintName = "techlingoTests"
-               ReferencedContainer = "container:techlingo.xcodeproj">
+               BuildableName = "techsaurusTests.xctest"
+               BlueprintName = "techsaurusTests"
+               ReferencedContainer = "container:techsaurus.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEED3EE119589DB0002D1785"
-            BuildableName = "techlingo.app"
-            BlueprintName = "techlingo"
-            ReferencedContainer = "container:techlingo.xcodeproj">
+            BuildableName = "techsaurus.app"
+            BlueprintName = "techsaurus"
+            ReferencedContainer = "container:techsaurus.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEED3EE119589DB0002D1785"
-            BuildableName = "techlingo.app"
-            BlueprintName = "techlingo"
-            ReferencedContainer = "container:techlingo.xcodeproj">
+            BuildableName = "techsaurus.app"
+            BlueprintName = "techsaurus"
+            ReferencedContainer = "container:techsaurus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CEED3EE119589DB0002D1785"
-            BuildableName = "techlingo.app"
-            BlueprintName = "techlingo"
-            ReferencedContainer = "container:techlingo.xcodeproj">
+            BuildableName = "techsaurus.app"
+            BlueprintName = "techsaurus"
+            ReferencedContainer = "container:techsaurus.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

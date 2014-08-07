@@ -50,8 +50,8 @@ NSString *searchTermPrev = @"";
 - (IBAction)requestJobs:(id)sender
 {
     if (sender) {
-        BOOL dismiss = [self textFieldShouldReturn:_searchTerm];
-        dismiss = [self textFieldShouldReturn:_searchLocation];
+        [self textFieldShouldReturn:_searchTerm];
+        [self textFieldShouldReturn:_searchLocation];
     }
     
     NSString * searchUrl = [NSString stringWithFormat:@"%@%@",[self.appDelegate.configuration objectForKey:@"jobsApiDomainProd"],[self.appDelegate.configuration objectForKey:@"trendsUrl"]];

@@ -9,7 +9,8 @@
 
 @interface WebVC : UIViewController <UITextFieldDelegate, UIWebViewDelegate>
 
-@property (nonatomic, strong) UIWebView	*myWebView;
-@property (nonatomic, strong) NSString	*requestedURL;
+@property (nonatomic, strong) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) IBOutlet UITextField *urlField;
+@property (nonatomic, weak) NSString *requestedUrl;
 
 @end

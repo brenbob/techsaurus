@@ -60,49 +60,28 @@
 
 int kTextFieldHeight = 40;
 
-@synthesize myWebView, requestedURL;
-
 - (void)dealloc
 {
-	myWebView.delegate = nil;
+	_webView.delegate = nil;
 	
 }
 
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-
-    double statusBarOffset = ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) ? 20.0 : 0;
-    double topY = self.navigationController.navigationBar.frame.size.height+statusBarOffset;
-
+    _urlField.text = _requestedUrl;
+	[_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_requestedUrl]]];
     
-	CGRect webFrame = [[UIScreen mainScreen] applicationFrame];
-	webFrame.origin.y += kTextFieldHeight;	// leave space for the URL input field
-	self.myWebView = [[UIWebView alloc] initWithFrame:webFrame];
-	self.myWebView.backgroundColor = [UIColor whiteColor];
-	self.myWebView.scalesPageToFit = YES;
-	self.myWebView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-	self.myWebView.delegate = self;
-	[self.view addSubview: self.myWebView];
-	
-	CGRect textFieldFrame = CGRectMake(0, topY, self.view.bounds.size.width, kTextFieldHeight);
-	UITextField *urlField = [[UITextField alloc] initWithFrame:textFieldFrame];
-    urlField.borderStyle = UITextBorderStyleBezel;
-    urlField.textColor = [UIColor blackColor];
-    urlField.delegate = self;
-    urlField.placeholder = @"<enter a URL>";
-    urlField.text = requestedURL;
-	urlField.backgroundColor = [UIColor lightGrayColor];
-	urlField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	urlField.returnKeyType = UIReturnKeyGo;
-	urlField.keyboardType = UIKeyboardTypeURL;	// this makes the keyboard more friendly for typing URLs
-	urlField.autocapitalizationType = UITextAutocapitalizationTypeNone;	
-	urlField.autocorrectionType = UITextAutocorrectionTypeNo;	
-	urlField.clearButtonMode = UITextFieldViewModeAlways;
-	[urlField setAccessibilityLabel:NSLocalizedString(@"URLTextField", @"")];
-	[self.view addSubview:urlField];
-	
-	[self.myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:requestedURL]]];
+    // create a custom navigation bar button and set it to always say "Back"
+	UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(loadLink)];
+	self.navigationItem.rightBarButtonItem = temporaryBarButtonItem;
+
+}
+
+- (void)loadLink
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_urlField.text]];
+   
 }
 
 // called after the view controller's view is released and set to nil.
@@ -114,7 +93,7 @@ int kTextFieldHeight = 40;
 	[super viewDidUnload];
 	
 	// release and set to nil
-	self.myWebView = nil;
+	self.webView = nil;
 }
 
 
@@ -123,34 +102,27 @@ int kTextFieldHeight = 40;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	self.myWebView.delegate = self;	// setup the delegate as the web view is shown
 
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.myWebView stopLoading];	// in case the web view is still loading its content
-	self.myWebView.delegate = nil;	// disconnect the delegate as the webview is hidden
+    [self.webView stopLoading];	// in case the web view is still loading its content
+	self.webView.delegate = nil;	// disconnect the delegate as the webview is hidden
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	// we support rotation in this view controller
-	return NO;
-}
 
 // this helps dismiss the keyboard when the "Done" button is clicked
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 	[textField resignFirstResponder];
-	[self.myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[textField text]]]];
+	[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[textField text]]]];
 	
 	return YES;
 }
 
 
-#pragma mark -
 #pragma mark UIWebViewDelegate
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
@@ -174,7 +146,7 @@ int kTextFieldHeight = 40;
 	NSString* errorString = [NSString stringWithFormat:
 							 @"<html><center><font size=+5 color='red'>An error occurred:<br>%@</font></center></html>",
 							 error.localizedDescription];
-	[self.myWebView loadHTMLString:errorString baseURL:nil];
+	[self.webView loadHTMLString:errorString baseURL:nil];
 }
 
 @end
