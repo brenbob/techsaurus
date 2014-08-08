@@ -12,5 +12,6 @@
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) IBOutlet UITextField *urlField;
 @property (nonatomic, weak) NSString *requestedUrl;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *uiLoading;
 
 @end

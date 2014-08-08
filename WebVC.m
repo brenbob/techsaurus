@@ -6,7 +6,7 @@
 //
 
 #import "WebVC.h"
-
+#import "Common.h"
 
 /*
  File: WebViewController.m
@@ -66,11 +66,18 @@ int kTextFieldHeight = 40;
 	
 }
 
+
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-    _urlField.text = _requestedUrl;
-	[_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_requestedUrl]]];
+    if (_requestedUrl == nil) { // assume loading the About page
+        NSString *aboutUrl = [Common getUrl:@"aboutUrl" :nil];
+        NSLog(@"about url = %@",aboutUrl);
+        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:aboutUrl]]];
+    } else {
+        _urlField.text = _requestedUrl;
+        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_requestedUrl]]];
+    }
     
     // create a custom navigation bar button and set it to always say "Back"
 	UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(loadLink)];
@@ -80,7 +87,7 @@ int kTextFieldHeight = 40;
 
 - (void)loadLink
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_urlField.text]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_urlField.text]];
    
 }
 
@@ -103,6 +110,7 @@ int kTextFieldHeight = 40;
 - (void)viewWillAppear:(BOOL)animated
 {
 
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -129,12 +137,16 @@ int kTextFieldHeight = 40;
 {
 	// starting the load, show the activity indicator in the status bar
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    _uiLoading.hidden = NO;
+
 }
+
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
 	// finished loading, hide the activity indicator in the status bar
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    _uiLoading.hidden =YES;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error

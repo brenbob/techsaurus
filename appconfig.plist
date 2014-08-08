@@ -2,12 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>aboutUrl</key>
+	<string>/glossary/about.php</string>
 	<key>resourceLinks</key>
 	<dict>
 		<key>stackoverflow</key>
 		<string>http://stackoverflow.com/tags/&lt;tag&gt;/info</string>
 		<key>wikipedia</key>
-		<string>http://en.wikipedia.org/wiki/&lt;tag&gt;</string>
+		<string>http://en.m.wikipedia.org/wiki/&lt;tag&gt;</string>
 		<key>quora</key>
 		<string>http://www.quora.com/search?q=&lt;tag&gt;</string>
 	</dict>

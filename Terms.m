@@ -76,6 +76,7 @@
 
         appDelegate.allTerms = allTerms; // store in appdelegate for use in other views
         sections = [Common getSections:allTerms withKey:@"title"];
+        [self.uiLoading stopAnimating];
         [self.tableView reloadData];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

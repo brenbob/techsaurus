@@ -22,6 +22,7 @@
     // load values from appconfig.plist
     _configuration = [self configuration];
 
+
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
@@ -29,6 +30,7 @@
     }
     return YES;
 }
+
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
@@ -66,6 +68,7 @@
                                    @"resourceLinks",           @"resourceLinks",
                                    @"simplyHiredUrl",          @"simplyHiredUrl",
                                    @"jobAgentUrl",             @"jobAgentUrl",
+                                   @"aboutUrl",                @"aboutUrl",
                                    nil];
         
         

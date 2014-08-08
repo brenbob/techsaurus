@@ -30,15 +30,15 @@ NSString *searchTermPrev = @"";
     self.tableView.hidden = YES;
     self.btnSimplyHired.hidden = YES;
     self.btnJobAgent.hidden = YES;
+    [self.uiLoading stopAnimating];
 
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
     if (_keyword != NULL) {
+        NSLog(@"has keyword");
         self.searchTerm.text = _keyword;
-        self.uiLoading.hidden = NO;
-        [self.uiLoading startAnimating];
         [self requestJobs:nil];
     }
 
@@ -54,6 +54,9 @@ NSString *searchTermPrev = @"";
         [self textFieldShouldReturn:_searchLocation];
     }
     
+    // show loading indicator
+    [self.uiLoading startAnimating];
+
     NSString * searchUrl = [NSString stringWithFormat:@"%@%@",[self.appDelegate.configuration objectForKey:@"jobsApiDomainProd"],[self.appDelegate.configuration objectForKey:@"trendsUrl"]];
     
 #ifdef JOBS_API_DEV
@@ -81,9 +84,9 @@ NSString *searchTermPrev = @"";
         self.tableView.hidden = NO;
         self.btnSimplyHired.hidden = NO;
         self.btnJobAgent.hidden = NO;
+        [self.uiLoading stopAnimating];
 
         [self.tableView reloadData];
-        [self.uiLoading stopAnimating];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Failed: Status Code: %ld", (long)operation.response.statusCode);

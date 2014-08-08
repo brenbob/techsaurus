@@ -19,6 +19,7 @@
 @property (nonatomic, strong) AppDelegate *appDelegate;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *btnSortTable;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *uiLoading;
 @property IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
