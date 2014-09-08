@@ -8,7 +8,6 @@
 
 #import "Jobs.h"
 #import "AppDelegate.h"
-#import "AFNetworking.h"
 #import "Common.h"
 
 @interface Jobs ()
@@ -41,6 +40,9 @@ NSString *searchTermPrev = @"";
         self.searchTerm.text = _keyword;
         [self requestJobs:nil];
     }
+
+    // Log pageview w/ Google Analytics
+    [_appDelegate trackPVFull:@"Jobs" :@"page view" :@"search" :_keyword :nil];
 
 }
 

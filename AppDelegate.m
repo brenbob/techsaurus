@@ -8,6 +8,20 @@
 
 #import "AppDelegate.h"
 
+#import "GAI.h"
+#import "GAIFields.h"
+#import "GAITracker.h"
+#import "GAIDictionaryBuilder.h"
+
+/** Google Analytics configuration constants **/
+/** Other settings in appconfig.plist **/
+#ifdef DRYRUN
+    static BOOL const kGaDryRun = YES;
+#else
+    static BOOL const kGaDryRun = NO;
+#endif
+
+
 @implementation AppDelegate
 @synthesize configuration = _configuration;
 @synthesize allTerms = _allTerms;
@@ -21,6 +35,18 @@
     
     // load values from appconfig.plist
     _configuration = [self configuration];
+
+    // User must be able to opt out of tracking
+    [GAI sharedInstance].optOut = ![_configuration objectForKey:@"kAllowTracking"];
+    
+    // Initialize Google Analytics with a N-second dispatch interval. There is a
+    // tradeoff between battery usage and timely dispatch.
+    [GAI sharedInstance].dispatchInterval = (int)[_configuration objectForKey:@"kGaDispatchPeriod"];
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [[GAI sharedInstance] setDryRun:kGaDryRun];
+    // Set the log level to verbose.
+        [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
+    self.tracker = [[GAI sharedInstance] trackerWithTrackingId:[_configuration objectForKey:@"kGaPropertyId"]];
 
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -106,6 +132,47 @@
     }
     
     return _configuration;
+}
+
+#pragma mark log data to Google Analytics
+
+- (void)trackPVFull:(NSString*)screenName :(NSString*)eventCategory :(NSString*)eventAction :(NSString*)eventLabel :(NSNumber*)eventValue
+{
+    
+    // Google Analytics v3
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    // Sending the same screen view hit using [GAIDictionaryBuilder createAppView]
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:screenName
+                                                      forKey:kGAIScreenName] build]];
+    
+    if (eventCategory != nil) {
+        // Send category (params) with screen hit
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:eventCategory     // Event category (required)
+                                                              action:eventAction  // Event action (required)
+                                                               label:eventLabel          // Event label
+                                                               value:eventValue] build]];    // Event value
+    }
+    
+    // Clear the screen name field when we're done.
+    [tracker set:kGAIScreenName
+           value:nil];
+}
+
+- (void)trackPV:(NSString*)screenName
+{
+    
+    // Google Analytics v3
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    // Sending the same screen view hit using [GAIDictionaryBuilder createAppView]
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:screenName
+                                                      forKey:kGAIScreenName] build]];
+    
+    // Clear the screen name field when we're done.
+    [tracker set:kGAIScreenName
+           value:nil];
+    
 }
 
 

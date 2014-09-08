@@ -7,7 +7,8 @@
 # Pods/
 
 # ignore following directories
-Archive/
+archive/
 build/
+Pods/
 
 # ignore following files

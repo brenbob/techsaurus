@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>kGaPropertyId</key>
+	<string>UA-30717261-5</string>
+	<key>kGaDispatchPeriod</key>
+	<integer>20</integer>
+	<key>kAllowTracking</key>
+	<true/>
 	<key>aboutUrl</key>
 	<string>/glossary/about.php</string>
 	<key>resourceLinks</key>
@@ -24,7 +30,7 @@
 	<key>jobsApiDomainDev</key>
 	<string>http://localhost:8888</string>
 	<key>jobsApiDomainProd</key>
-	<string>http://brisksoft.heroku.com</string>
+	<string>http://brisksoft.herokuapp.com</string>
 	<key>tagsUrl</key>
 	<string>/glossary/getterms.php?tag=all</string>
 	<key>apiDomainProd</key>

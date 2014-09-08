@@ -93,7 +93,7 @@
                             <constraint firstItem="cY2-sg-hbY" firstAttribute="top" secondItem="TJF-Vl-6yx" secondAttribute="bottom" id="ug6-uz-7JA"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Terms" id="UyV-30-aTW"/>
+                    <tabBarItem key="tabBarItem" title="Terms" image="terms_alpha_" id="UyV-30-aTW"/>
                     <navigationItem key="navigationItem" title="Techsaurus" id="c0b-GF-vzI">
                         <barButtonItem key="backBarButtonItem" title="Back" id="tbP-7c-owS"/>
                         <barButtonItem key="rightBarButtonItem" image="sort_up_44.png" id="FU7-Ds-kvo">
@@ -315,7 +315,7 @@
         <scene sceneID="Jv5-Od-8KY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ISn-ob-5lh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tags" id="tl3-b1-Ld1"/>
+                    <tabBarItem key="tabBarItem" title="Tags" image="tags_" id="tl3-b1-Ld1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eIn-7R-A5j">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -381,11 +381,13 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBG-pq-OvM">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBG-pq-OvM">
                                 <rect key="frame" x="218" y="109" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <state key="normal" image="refresh.png"/>
+                                <state key="normal" image="refresh_">
+                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="makeSalad" destination="Ag7-NM-ZhO" eventType="touchUpInside" id="sai-Ml-OVT"/>
                                 </connections>
@@ -393,7 +395,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Salad" id="lHI-Qc-DG8"/>
+                    <tabBarItem key="tabBarItem" title="Salad" image="loop_" id="lHI-Qc-DG8"/>
                     <connections>
                         <outlet property="btnFormat" destination="ptZ-Eo-uF9" id="0gL-ZZ-gbj"/>
                         <outlet property="output" destination="dzb-Ih-RJe" id="11a-bb-5Oe"/>
@@ -581,7 +583,7 @@
         <scene sceneID="lek-DX-CCs">
             <objects>
                 <navigationController title="Jobs" id="fw4-vb-38Y" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Jobs" id="l8Z-k7-Hwa"/>
+                    <tabBarItem key="tabBarItem" title="Jobs" image="jobs_" id="l8Z-k7-Hwa"/>
                     <navigationItem key="navigationItem" id="TEq-SO-HRy"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="sM6-SG-YF0">
                         <autoresizingMask key="autoresizingMask"/>
@@ -703,7 +705,7 @@
                             <constraint firstItem="P3R-ug-1sf" firstAttribute="leading" secondItem="XDq-GL-MD7" secondAttribute="leading" id="yoE-pe-rIR"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="About" id="IX2-gf-BBA"/>
+                    <tabBarItem key="tabBarItem" title="About" image="about_" id="IX2-gf-BBA"/>
                     <navigationItem key="navigationItem" id="heT-7O-tOc">
                         <barButtonItem key="backBarButtonItem" title="Back" id="BMO-V4-1kI"/>
                     </navigationItem>
@@ -718,8 +720,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="refresh.png" width="44" height="44"/>
+        <image name="about_" width="30" height="30"/>
+        <image name="jobs_" width="30" height="30"/>
+        <image name="loop_" width="30" height="30"/>
+        <image name="refresh_" width="30" height="30"/>
         <image name="sort_up_44.png" width="44" height="44"/>
+        <image name="tags_" width="30" height="30"/>
+        <image name="terms_alpha_" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -728,7 +735,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="PBu-fG-O1h"/>
-        <segue reference="v9T-24-rWc"/>
         <segue reference="Lo0-Zb-JrZ"/>
+        <segue reference="v9T-24-rWc"/>
     </inferredMetricsTieBreakers>
 </document>

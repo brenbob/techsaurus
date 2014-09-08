@@ -46,6 +46,14 @@ NSArray *coAdj;
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [appDelegate trackPV:@"Salad"];
+    
+}
+
 -(void)requestWordLists
 {
 
@@ -125,7 +133,7 @@ NSArray *coAdj;
      initWithActivityItems:activityItems applicationActivities:nil];
     
     
-    [activityController setValue:[NSString stringWithFormat:@"Tech Terms - random %i", [_btnFormat selectedSegmentIndex]] forKey:@"subject"];
+    [activityController setValue:[NSString stringWithFormat:@"Tech Terms - random %li", (long)[_btnFormat selectedSegmentIndex]] forKey:@"subject"];
     
     // Removed un-needed activities
     activityController.excludedActivityTypes = [[NSArray alloc] initWithObjects:

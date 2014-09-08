@@ -8,7 +8,6 @@
 #import "Tags.h"
 #import "AppDelegate.h"
 #import "Common.h"
-#import "AFNetworking.h"
 #import "DetailViewController.h"
 
 @interface Tags () {
@@ -52,6 +51,9 @@ bool isFullTable = 0;
 {
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+
+    [appDelegate trackPV:@"Tags"];
+    
 }
 
 #pragma mark data methods
@@ -60,7 +62,7 @@ bool isFullTable = 0;
 {
     NSString *tagsUrl = [Common getUrl:@"tagsUrl" :@""];
     NSURL *url = [NSURL URLWithString:tagsUrl];
-//    NSLog(@"url = %@", url);
+    NSLog(@"url = %@", url);
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     //AFNetworking asynchronous url request
@@ -70,7 +72,7 @@ bool isFullTable = 0;
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         allTerms = [responseObject objectForKey:@"Tags"];
-        sections = [Common getSections:allTerms withKey:@"tag"];
+        sections = [Common getSections:allTerms withKey:@"title"];
         searchResults = [NSMutableArray arrayWithCapacity:[allTerms count]];
 
         // on initial launch, show high-level categories
@@ -156,11 +158,11 @@ bool isFullTable = 0;
         item = [searchResults objectAtIndex:indexPath.row];
     } else if (isFullTable) {
         // add indexPath.row to starting index of current section
-        int itemIndex = [(NSNumber *)[sections objectAtIndex:indexPath.section][1] intValue] + indexPath.row;
+        int itemIndex = [[sections objectAtIndex:indexPath.section][1] intValue] + (int)indexPath.row;
         item = [tableData objectAtIndex:itemIndex];
     }
     
-	cell.textLabel.text = [item valueForKey:@"tag"];
+	cell.textLabel.text = [item valueForKey:@"title"];
 	cell.textLabel.font = [UIFont systemFontOfSize:14];
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -188,7 +190,7 @@ bool isFullTable = 0;
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
             selectedItem = [tableData objectAtIndex:indexPath.row];
         }
-        [[segue destinationViewController] setSelectedTag:[selectedItem valueForKey:@"tag"]];
+        [[segue destinationViewController] setSelectedTag:[selectedItem valueForKey:@"title"]];
     }
 }
 
@@ -205,9 +207,9 @@ bool isFullTable = 0;
 - (IBAction)sortTable {
     
     UIImage *tmpImage = [UIImage imageWithCGImage:_btnSortTable.image.CGImage scale:2.0 orientation:UIImageOrientationLeft];
-    NSSortDescriptor *tagDescriptor = [[NSSortDescriptor alloc] initWithKey:@"tag" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    NSSortDescriptor *tagDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES selector:@selector(caseInsensitiveCompare:)];
     if (self->sorted) {
-        tagDescriptor = [[NSSortDescriptor alloc] initWithKey:@"tag" ascending:NO selector:@selector(caseInsensitiveCompare:)];
+        tagDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:NO selector:@selector(caseInsensitiveCompare:)];
         sorted = 0;
     } else {
         sorted = 1;
@@ -219,7 +221,7 @@ bool isFullTable = 0;
     NSArray *sortDescriptors = @[tagDescriptor];
     NSArray *sortedArray = [self->tableData sortedArrayUsingDescriptors:sortDescriptors];
     self->tableData = [sortedArray mutableCopy];
-    sections = [Common getSections:tableData withKey:@"tag"];
+    sections = [Common getSections:tableData withKey:@"title"];
     [self.tableView reloadData];
 }
 
@@ -242,7 +244,7 @@ bool isFullTable = 0;
     // Remove existing objects from the filtered search array
     [searchResults removeAllObjects];
     
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"tag beginswith[c] %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"title beginswith[c] %@", searchText];
     searchResults = [[tableData filteredArrayUsingPredicate:resultPredicate] mutableCopy];
 }
 

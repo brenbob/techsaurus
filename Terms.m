@@ -9,7 +9,6 @@
 #import "Terms.h"
 #import "AppDelegate.h"
 #import "Common.h"
-#import "AFNetworking.h"
 #import "DetailViewController.h"
 
 @interface Terms () {
@@ -52,6 +51,12 @@
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [appDelegate trackPV:@"Terms"]; // Google Analytics call needs to happen here, or initial launch event not recorded
+}
+
 
 #pragma mark data methods
 
@@ -150,7 +155,7 @@
         item = [searchResults objectAtIndex:indexPath.row];
     } else {
         // add indexPath.row to starting index of current section
-        int originalIndex = [(NSNumber *)[sections objectAtIndex:indexPath.section][1] intValue] + indexPath.row;
+        int originalIndex = [[sections objectAtIndex:indexPath.section][1] intValue] + (int)indexPath.row;
         item = [allTerms objectAtIndex:originalIndex];
     }
     
@@ -208,7 +213,7 @@
         }
         else {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            itemIndex = [(NSNumber *)[sections objectAtIndex:indexPath.section][1] intValue] + indexPath.row;
+            itemIndex = [[sections objectAtIndex:indexPath.section][1] intValue] + (int)indexPath.row;
             object = [allTerms objectAtIndex:itemIndex];
         }
         

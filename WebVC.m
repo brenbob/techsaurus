@@ -55,6 +55,7 @@
  
  */
 
+#import "AppDelegate.h"
 
 @implementation WebVC
 
@@ -72,7 +73,6 @@ int kTextFieldHeight = 40;
 	[super viewDidLoad];
     if (_requestedUrl == nil) { // assume loading the About page
         NSString *aboutUrl = [Common getUrl:@"aboutUrl" :nil];
-        NSLog(@"about url = %@",aboutUrl);
         [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:aboutUrl]]];
     } else {
         _urlField.text = _requestedUrl;
@@ -110,6 +110,8 @@ int kTextFieldHeight = 40;
 - (void)viewWillAppear:(BOOL)animated
 {
 
+    // Log pageview w/ Google Analytics
+    [(AppDelegate *)[UIApplication sharedApplication].delegate trackPVFull:@"Web" :@"page view" :@"page view"  :_requestedUrl :nil];
     
 }
 

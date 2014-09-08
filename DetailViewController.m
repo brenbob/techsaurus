@@ -80,6 +80,9 @@
         NSMutableArray *tagsArray = [[[self.detailItem valueForKey:@"tags"] componentsSeparatedByString:@","] mutableCopy];
         [self renderTags:tagsArray];
     }
+
+    // Log pageview w/ Google Analytics
+    [_appDelegate trackPVFull:@"Detail" :@"page view" :@"page view" :self.title :nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -184,7 +187,14 @@
 
 - (void)shareItem {
     
-    NSString *postText = [NSString stringWithFormat:@"%@ : %@\nTags : %@", self.title, self.description.text, [self.detailItem valueForKey:@"tags"]];
+    // get list of resource links
+    NSArray *resources = [self.detailItem valueForKey:@"resources"];
+    NSString *links = @"";
+    for (int i=0;i<[resources count]; i++) {
+        links = [NSString stringWithFormat:@"%@\n* %@",links,[resources[i] valueForKey:@"link"]];
+    }
+    
+    NSString *postText = [NSString stringWithFormat:@"%@ : %@\nTags : %@\nResources: %@", self.title, self.description.text, [self.detailItem valueForKey:@"tags"], links];
     
     NSURL *recipients = [NSURL URLWithString:@""];
     

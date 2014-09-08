@@ -9,7 +9,6 @@
 #import "TermsByTagVC.h"
 #import "AppDelegate.h"
 #import "Common.h"
-#import "AFNetworking.h"
 #import "DetailViewController.h"
 
 @implementation TermsByTagVC
@@ -49,6 +48,10 @@ int sorted = 1;
 {
     [super viewWillAppear:animated];
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    
+    // Log pageview w/ Google Analytics
+    [appDelegate trackPVFull:@"TermsbyTag" :@"page view" :@"page view" :selectedTag :nil];
+
 }
 
 -(UIView*)setCustomTitle:(NSString*)title :(NSString*)subtitle {
