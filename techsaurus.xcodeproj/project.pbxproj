@@ -39,6 +39,7 @@
 		CEE8505C19BA78720045844F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE8505B19BA78720045844F /* CFNetwork.framework */; };
 		CEE8505E19BA788D0045844F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE8505D19BA788D0045844F /* Security.framework */; };
 		CEE8506119BE0AAB0045844F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE8506019BE0AAB0045844F /* MobileCoreServices.framework */; };
+		CEE8506619BE60F40045844F /* Ads.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE8506519BE60F40045844F /* Ads.m */; };
 		CEED3EE619589DB0002D1785 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEED3EE519589DB0002D1785 /* Foundation.framework */; };
 		CEED3EE819589DB0002D1785 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEED3EE719589DB0002D1785 /* CoreGraphics.framework */; };
 		CEED3EEA19589DB0002D1785 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEED3EE919589DB0002D1785 /* UIKit.framework */; };
@@ -102,6 +103,8 @@
 		CEE8505B19BA78720045844F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		CEE8505D19BA788D0045844F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CEE8506019BE0AAB0045844F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		CEE8506419BE60F40045844F /* Ads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ads.h; sourceTree = "<group>"; };
+		CEE8506519BE60F40045844F /* Ads.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ads.m; sourceTree = "<group>"; };
 		CEED3EE219589DB0002D1785 /* techsaurus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = techsaurus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEED3EE519589DB0002D1785 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CEED3EE719589DB0002D1785 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -175,18 +178,9 @@
 			name = images;
 			sourceTree = "<group>";
 		};
-		CEA6D9F819B7AC5600E989D2 /* Google Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				CEA6DA0D19B7AD1800E989D2 /* libGoogleAnalyticsServices.a */,
-			);
-			name = "Google Analytics";
-			sourceTree = "<group>";
-		};
 		CEED3ED919589DB0002D1785 = {
 			isa = PBXGroup;
 			children = (
-				CEA6D9F819B7AC5600E989D2 /* Google Analytics */,
 				CE9B529319995FCD003818D2 /* Images.xcassets */,
 				CE9B528E19994B04003818D2 /* images */,
 				CE21BE7B19665667004008AB /* appconfig.plist */,
@@ -194,6 +188,8 @@
 				CE21BE671966541B004008AB /* AppDelegate.m */,
 				CE21BE61196653C2004008AB /* Common.h */,
 				CE21BE62196653C2004008AB /* Common.m */,
+				CEE8506419BE60F40045844F /* Ads.h */,
+				CEE8506519BE60F40045844F /* Ads.m */,
 				CE21BE841966590B004008AB /* DWTag */,
 				CE21BE7F196657C1004008AB /* InfoPlist.strings */,
 				CEED3F0019589DB0002D1785 /* DetailViewController.h */,
@@ -231,6 +227,7 @@
 		CEED3EE419589DB0002D1785 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEA6DA0D19B7AD1800E989D2 /* libGoogleAnalyticsServices.a */,
 				CEE8506019BE0AAB0045844F /* MobileCoreServices.framework */,
 				CEE8505D19BA788D0045844F /* Security.framework */,
 				CEE8505B19BA78720045844F /* CFNetwork.framework */,
@@ -460,6 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEE8506619BE60F40045844F /* Ads.m in Sources */,
 				CE21BE6E196654AF004008AB /* Tags.m in Sources */,
 				CE21BE681966541B004008AB /* AppDelegate.m in Sources */,
 				CED3DDA41992E5D700D21FAC /* WebVC.m in Sources */,

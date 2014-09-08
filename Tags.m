@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "Common.h"
 #import "DetailViewController.h"
+#import "Ads.h"
 
 @interface Tags () {
     
@@ -45,6 +46,8 @@ bool isFullTable = 0;
     sorted = 1; // table is initially sorted ASC order
     
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+
+    [Ads getAd:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated

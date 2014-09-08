@@ -3,7 +3,8 @@ platform :ios, '7.0'
 
 target 'techsaurus' do
 
-pod 'AFNetworking', :path => '~/workspace/AFNetworking/'
-pod 'GoogleAnalytics-iOS-SDK', :path => '~/workspace/GoogleAnalyticsServicesiOS_3.09'
+pod 'AFNetworking'
+pod 'GoogleAnalytics-iOS-SDK'
+pod 'Google-Mobile-Ads-SDK'
 
 end

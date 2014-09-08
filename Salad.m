@@ -9,6 +9,7 @@
 #import "Salad.h"
 #import "AppDelegate.h"
 #import "Common.h"
+#import "Ads.h"
 
 @interface Salad ()
 
@@ -43,7 +44,7 @@ NSArray *coAdj;
     
     [Common formatTextView:self.output :nil];
     [self requestWordLists];
-    
+    [Ads getAd:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated

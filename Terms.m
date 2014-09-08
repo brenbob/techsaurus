@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "Common.h"
 #import "DetailViewController.h"
+#import "Ads.h"
 
 @interface Terms () {
 
@@ -44,6 +45,8 @@
     sorted = 1;
     
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    [Ads getAd:self];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -56,6 +59,7 @@
     
     [appDelegate trackPV:@"Terms"]; // Google Analytics call needs to happen here, or initial launch event not recorded
 }
+
 
 
 #pragma mark data methods

@@ -20,20 +20,17 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - GoogleAnalytics-iOS-SDK (3.09)
+  - Google-Mobile-Ads-SDK (6.11.1)
+  - GoogleAnalytics-iOS-SDK (3.0.9)
 
 DEPENDENCIES:
-  - AFNetworking (from `~/workspace/AFNetworking/`)
-  - GoogleAnalytics-iOS-SDK (from `~/workspace/GoogleAnalyticsServicesiOS_3.09`)
-
-EXTERNAL SOURCES:
-  AFNetworking:
-    :path: ~/workspace/AFNetworking/
-  GoogleAnalytics-iOS-SDK:
-    :path: ~/workspace/GoogleAnalyticsServicesiOS_3.09
+  - AFNetworking
+  - Google-Mobile-Ads-SDK
+  - GoogleAnalytics-iOS-SDK
 
 SPEC CHECKSUMS:
-  AFNetworking: 72af5ca61de0fac5773557f14decb1d635700a87
-  GoogleAnalytics-iOS-SDK: 36cc43ccb5038f2a8f07c4a681eb10fe1e21ae67
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  Google-Mobile-Ads-SDK: 657fcbf9436363d0f925cf905d176fb1cb10df85
+  GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
 
 COCOAPODS: 0.33.1

@@ -45,7 +45,7 @@
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     [[GAI sharedInstance] setDryRun:kGaDryRun];
     // Set the log level to verbose.
-        [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
+//        [[GAI sharedInstance].logger setLogLevel:kGAILogLevelVerbose];
     self.tracker = [[GAI sharedInstance] trackerWithTrackingId:[_configuration objectForKey:@"kGaPropertyId"]];
 
 

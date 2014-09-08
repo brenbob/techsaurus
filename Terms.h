@@ -13,6 +13,7 @@
     NSMutableArray *searchResults;
     NSArray *allTerms;
     NSArray *sections;
+
 }
 
 

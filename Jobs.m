@@ -9,6 +9,7 @@
 #import "Jobs.h"
 #import "AppDelegate.h"
 #import "Common.h"
+#import "Ads.h"
 
 @interface Jobs ()
 
@@ -30,6 +31,7 @@ NSString *searchTermPrev = @"";
     self.btnSimplyHired.hidden = YES;
     self.btnJobAgent.hidden = YES;
     [self.uiLoading stopAnimating];
+    [Ads getAd:self];
 
 }
 

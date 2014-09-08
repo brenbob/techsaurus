@@ -58,7 +58,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cY2-sg-hbY">
-                                <rect key="frame" x="0.0" y="106" width="320" height="315"/>
+                                <rect key="frame" x="0.0" y="106" width="320" height="275"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -84,7 +84,7 @@
                         <constraints>
                             <constraint firstItem="TJF-Vl-6yx" firstAttribute="trailing" secondItem="cY2-sg-hbY" secondAttribute="trailing" id="BN8-e0-iTN"/>
                             <constraint firstItem="TJF-Vl-6yx" firstAttribute="centerX" secondItem="Hus-oU-D3T" secondAttribute="centerX" id="I5x-x1-Pk3"/>
-                            <constraint firstItem="qC2-mz-DMb" firstAttribute="top" secondItem="cY2-sg-hbY" secondAttribute="bottom" constant="10" id="O83-By-k1G"/>
+                            <constraint firstItem="qC2-mz-DMb" firstAttribute="top" secondItem="cY2-sg-hbY" secondAttribute="bottom" constant="50" id="O83-By-k1G"/>
                             <constraint firstAttribute="trailing" secondItem="cY2-sg-hbY" secondAttribute="trailing" id="WlQ-aN-hDM"/>
                             <constraint firstItem="TJF-Vl-6yx" firstAttribute="top" secondItem="J9k-XX-xsv" secondAttribute="top" constant="62" id="dqj-oD-MgK"/>
                             <constraint firstItem="TJF-Vl-6yx" firstAttribute="leading" secondItem="cY2-sg-hbY" secondAttribute="leading" id="ePe-jS-RWx"/>
@@ -136,7 +136,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vKQ-yv-gHM">
-                                <rect key="frame" x="0.0" y="106" width="320" height="321"/>
+                                <rect key="frame" x="0.0" y="106" width="320" height="275"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -157,7 +157,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="vKQ-yv-gHM" secondAttribute="trailing" id="8LR-P9-l6b"/>
-                            <constraint firstItem="dwO-Mb-4s0" firstAttribute="top" secondItem="vKQ-yv-gHM" secondAttribute="bottom" constant="4" id="CON-H7-dPx"/>
+                            <constraint firstItem="dwO-Mb-4s0" firstAttribute="top" secondItem="vKQ-yv-gHM" secondAttribute="bottom" constant="50" id="CON-H7-dPx"/>
                             <constraint firstItem="6xz-rH-zZo" firstAttribute="trailing" secondItem="vKQ-yv-gHM" secondAttribute="trailing" id="MqY-Bu-ntQ"/>
                             <constraint firstItem="6xz-rH-zZo" firstAttribute="leading" secondItem="vKQ-yv-gHM" secondAttribute="leading" id="T6B-pd-Pob"/>
                             <constraint firstItem="vKQ-yv-gHM" firstAttribute="top" secondItem="6xz-rH-zZo" secondAttribute="bottom" id="hD1-EN-rsi"/>
@@ -443,7 +443,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="faY-wS-Nwu">
-                                <rect key="frame" x="0.0" y="110" width="320" height="284"/>
+                                <rect key="frame" x="0.0" y="110" width="320" height="234"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -515,7 +515,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DF3-f0-Prq">
-                                <rect key="frame" x="20" y="404" width="94" height="28"/>
+                                <rect key="frame" x="20" y="354" width="94" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="94" id="0rb-k3-AKQ"/>
@@ -529,7 +529,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1U-67-I8r">
-                                <rect key="frame" x="212" y="404" width="88" height="28"/>
+                                <rect key="frame" x="212" y="354" width="88" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Search listings">
@@ -553,13 +553,13 @@
                             <constraint firstItem="DF3-f0-Prq" firstAttribute="leading" secondItem="Kn0-rx-PNh" secondAttribute="leading" constant="20" id="NUB-uh-Zqx"/>
                             <constraint firstItem="g0c-f2-W2h" firstAttribute="top" secondItem="UPa-Xy-mJJ" secondAttribute="top" id="O6w-u2-tji"/>
                             <constraint firstItem="g0c-f2-W2h" firstAttribute="leading" secondItem="BFD-p3-iOA" secondAttribute="trailing" constant="14" id="SLw-0E-9Hl"/>
-                            <constraint firstAttribute="bottom" secondItem="m1U-67-I8r" secondAttribute="bottom" constant="48" id="TZp-hh-fNQ"/>
+                            <constraint firstAttribute="bottom" secondItem="m1U-67-I8r" secondAttribute="bottom" constant="98" id="TZp-hh-fNQ"/>
                             <constraint firstItem="BFD-p3-iOA" firstAttribute="top" secondItem="Kn0-rx-PNh" secondAttribute="top" constant="72" id="Zzm-RZ-j3M"/>
                             <constraint firstAttribute="trailing" secondItem="m1U-67-I8r" secondAttribute="trailing" constant="20" id="bTK-xI-g2g"/>
                             <constraint firstItem="faY-wS-Nwu" firstAttribute="top" secondItem="UPa-Xy-mJJ" secondAttribute="bottom" constant="8" id="u8C-3f-S7R"/>
                             <constraint firstItem="g0c-f2-W2h" firstAttribute="baseline" secondItem="BFD-p3-iOA" secondAttribute="baseline" id="ue9-dX-v1g"/>
                             <constraint firstItem="UPa-Xy-mJJ" firstAttribute="leading" secondItem="g0c-f2-W2h" secondAttribute="trailing" constant="3" id="v3s-sJ-m19"/>
-                            <constraint firstAttribute="bottom" secondItem="DF3-f0-Prq" secondAttribute="bottom" constant="48" id="xkc-u0-FSD"/>
+                            <constraint firstAttribute="bottom" secondItem="DF3-f0-Prq" secondAttribute="bottom" constant="98" id="xkc-u0-FSD"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Jobs" id="bsf-vY-VG0"/>
@@ -734,8 +734,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="dHC-no-zCn"/>
         <segue reference="PBu-fG-O1h"/>
         <segue reference="Lo0-Zb-JrZ"/>
-        <segue reference="v9T-24-rWc"/>
     </inferredMetricsTieBreakers>
 </document>

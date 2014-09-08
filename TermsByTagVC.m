@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "Common.h"
 #import "DetailViewController.h"
+#import "Ads.h"
 
 @implementation TermsByTagVC
 @synthesize appDelegate, selectedTag;
@@ -42,6 +43,8 @@ int sorted = 1;
     [self requestTerms:selectedTag];
     
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    [Ads getAd:self];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
