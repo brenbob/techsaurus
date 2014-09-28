@@ -19,7 +19,10 @@
 
  // global variables
 var tags = {}
-var curTag = "";
+var alltags = {}
+var curTag = ""; // currently selected tag
+var curCat = ""; // currently selected category
+var updated = "";
 var resourceLinks = [
     { "title" : "Stackoverflow", 
     "link" : "http://stackoverflow.com/tags/<tag>/info"
@@ -27,11 +30,16 @@ var resourceLinks = [
     { "title" : "Wikipedia", 
     "link" : "http://en.m.wikipedia.org/wiki/<tag>"
     },
+    { "title" : "Jobs", 
+    "link" : "?tag=<tag>#jobs"
+    },
     { "title" : "Quora", 
     "link" : "http://www.quora.com/search?q=<tag>"
+    },
+    { "title" : "Tutorials", 
+    "link" : "https://www.google.com/search?output=search&q=<tag>+tutorials"
     }
 ];
-
 
  $(document).on('pageinit', '#terms', function(){
 
@@ -46,36 +54,37 @@ var resourceLinks = [
 });
 
 
-var ajax = { 
-    parseJSON:function(result){ 
-        tags = result.Terms;
-        localStorage.setItem('tags', JSON.stringify(tags));
-    }
-}  
-
-
 var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
 
+        updated = localStorage.getItem('updated');
         tags = localStorage.getItem('tags');
-        if (!tags) {
-            var url = 'http://brisksoft.us/glossary/getterms.php?tag=';       
-            $.ajax({
-                url: url ,
-                dataType: "json",
-                async: true,
-                success: function (result) {
-                    ajax.parseJSON(result);
-                },
-                error: function (request,error) {
-                    alert('Network error has occurred please try again!');
-                }
-            }); 
+        alltags = localStorage.getItem('alltags');
+
+        if (!tags || !updated || updated < new Date()) {
+            console.log("get new data");
+
+            $.getJSON( 'http://brisksoft.us/glossary/getterms.php?tag=', function( data ) {
+                tags = data.Terms;
+                localStorage.setItem('alltags', JSON.stringify(alltags));
+            });
+
+            $.getJSON( 'http://brisksoft.us/glossary/getterms.php?tag=all', function( data ) {
+                alltags = data.Tags;
+                localStorage.setItem('alltags', JSON.stringify(alltags));
+            });
+
+            updated = new Date();
+            updated = updated.setHours(updated.getHours() + 24); // let data expire after 24 hrs
+            localStorage.setItem('updated', updated);
+
         } else {
             tags = JSON.parse(tags);
+            alltags = JSON.parse(alltags);
         }
+
 
     },
     // Bind Event Listeners
@@ -96,11 +105,6 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
-//        var listeningElement = parentElement.querySelector('.listening');
-//        var receivedElement = parentElement.querySelector('.received');
-
- //       listeningElement.setAttribute('style', 'display:none;');
- //       receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
     }
@@ -162,9 +166,9 @@ function loadJobs() {
             $("#jobs_list").empty();
             $.each(data, function(i, job) {
                 if (i == 0) {
-                    $("#jobs_list").append('<li><h3>Avg \'' + job.title + '\' salaries</h3><span class="ui-li-aside"><strong>' + job.salary + '<strong></span</li>');
+                    $("#jobs_list").append('<li><h3>Average \'' + job.title + '\' salaries</h3><span class="ui-li-aside"><strong>' + job.salary + '<strong></span</li>');
                     $("#jobs_list").append('<li data-role="list-divider">Average salary for related jobs</li>');
-                } else if (i < data.length-1) {
+                } else if (i < data.length-2) {
                     // last two items are timestamps
                     $("#jobs_list").append('<li><h3>' + job.title + '</h3><span class="ui-li-aside">' + job.salary + '</span</li>');
                 }
@@ -173,6 +177,7 @@ function loadJobs() {
         });
     }
 }
+
 
  $("#tag_detail").on('pagebeforeshow', function( event ) {
 
@@ -194,20 +199,29 @@ function loadJobs() {
     }
     $("#related").html(strRelated);
 
+    $('#related').on('click', 'button', function(e) {
+        // store selected tag into global variable for use on detail page
+        curCat = this.innerText;
+        location.href = "#relatedtags";
+    });
+
+
     // populate tag resources list page
+    $("#resource_list").empty();
     $("#resource_list").append('<li data-role="list-divider">Resources</li>');
     $.each(resourceLinks, function(i, resource) {
-
         var link = resource.link.replace('<tag>',curTag);
         $('#resource_list').append('<li><a href="' + link + '"><h3>' + resource.title + '</h3></a></li>');
     });
-    if (fullTag.resources) {
 
+    // add tag-specific resource links
+    if (fullTag.resources) {
         $.each(fullTag.resources, function(i, resource) {
             $('#resource_list').append('<li><a href="' + resource.link + '"><h3>' + resource.title + '</h3></a></li>');
         });
     }
     $("#resource_list").listview('refresh');
+
 
     if (ga) { 
           ga('send', 'event', 'tag', 'details', curTag);
@@ -233,23 +247,11 @@ $(document).on('pageinit', '#tag_detail', function(){
 
 $(document).on('pageinit', '#tags', function(){
 
-    alltags = localStorage.getItem('alltags');
-    if (!alltags) {
-        var url = 'http://brisksoft.us/glossary/getterms.php?tag=all';  
-        $.getJSON( url, function( data ) {
-            alltags = data.Tags;
-            localStorage.setItem('alltags', JSON.stringify(alltags));
-            updateList(alltags, '#tagslist', '#relatedtags');
-        });
-    } else {
-        alltags = JSON.parse(alltags);
-        updateList(alltags, '#tagslist', '#relatedtags');
-    }
-
+    updateList(alltags, '#tagslist', '#relatedtags');
 
     $('#tagslist').on('click', 'a', function(e) {
         // store selected tag into global variable for use on detail page
-        curTag = this.id;
+        curCat = this.id;
     });
 
     // clone footer from main page 
@@ -263,6 +265,14 @@ $(document).on('pageinit', '#tags', function(){
 
 });
 
+
+$("#jobs").on('pagebeforeshow', function( event ) {
+    console.log(curTag);
+    if (curTag) {
+        $( "#kw" ).val(curTag);
+        loadJobs();
+    }
+});
 
 $(document).on('pageinit', '#jobs', function(){
 
@@ -279,7 +289,21 @@ $(document).on('pageinit', '#relatedtags', function(){
 $("#relatedtags").on('pagebeforeshow', function( event ) {
 
     // populate related tags page
-    $("#tag_name").text(curTag);
+    $("#tag_name").text(curCat);
+
+    var tmpTags = tags.filter(function (el) {
+      var relatedTags = el.tags.split(",");
+      return relatedTags.indexOf(curCat) > -1;
+    });
+
+
+    updateList(tmpTags, '#reltagslist', '#tag_detail');
+
+    $('#reltagslist').on('click', 'a', function(e) {
+        // store selected tag into global variable for use on detail page
+        curTag = this.id;
+    });
+
 
 });
 
