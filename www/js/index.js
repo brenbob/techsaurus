@@ -41,15 +41,13 @@ var resourceLinks = [
     }
 ];
 
- $(document).on('pageinit', '#terms', function(){
+ $(document).on('pageshow', '#terms', function(){
 
-    updateList(tags, '#termslist','#tag_detail');        
-
-    $('#termslist').on('click', 'a', function(e) {
-        // store selected tag into global variable for use on detail page
-        localStorage.setItem('curTag', this.id);
-        curTag = this.id;
-    });
+        $('#termslist').on('click', 'a', function(e) {
+            // store selected tag into global variable for use on detail page
+            localStorage.setItem('curTag', this.id);
+            curTag = this.id;
+        });
 
 });
 
@@ -64,11 +62,17 @@ var app = {
         alltags = localStorage.getItem('alltags');
 
         if (!tags || !updated || updated < new Date()) {
-            console.log("get new data");
 
             $.getJSON( 'http://brisksoft.us/glossary/getterms.php?tag=', function( data ) {
                 tags = data.Terms;
                 localStorage.setItem('alltags', JSON.stringify(alltags));
+                updateList(tags, '#termslist','#tag_detail');  
+
+                // set new timestamp for data expiration after 24 hours
+                updated = new Date();
+                updated = updated.setHours(updated.getHours() + 24);
+                localStorage.setItem('updated', updated);
+
             });
 
             $.getJSON( 'http://brisksoft.us/glossary/getterms.php?tag=all', function( data ) {
@@ -76,15 +80,12 @@ var app = {
                 localStorage.setItem('alltags', JSON.stringify(alltags));
             });
 
-            updated = new Date();
-            updated = updated.setHours(updated.getHours() + 24); // let data expire after 24 hrs
-            localStorage.setItem('updated', updated);
 
         } else {
             tags = JSON.parse(tags);
             alltags = JSON.parse(alltags);
+            updateList(tags, '#termslist','#tag_detail');  
         }
-
 
     },
     // Bind Event Listeners
