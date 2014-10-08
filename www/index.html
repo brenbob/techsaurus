@@ -31,6 +31,10 @@
         <script src="js/jquery-2.1.1.min.js"></script>
         <script src="js/jquery.mobile.min.js"></script>
 
+        <!-- custom loading overlay -->
+        <script src="js/jquery.spin.js" type="text/javascript"></script>
+        <link href="css/jquery.spin.css" rel="stylesheet" type="text/css" />
+
         <title>Techsaurus</title>
 
         <!-- analytics -->
@@ -49,7 +53,7 @@
     <body>
         <div data-role="page" id="terms">
             <div data-role="header" data-position="fixed">
-                <h1>Techsaurus</h1>
+                <h1>Techsaurus<br><span class="subhead">Master tech buzzwords</span></h1>
                 <a href="#" class="ui-btn ui-btn-right" onclick="sortList('#termslist','#tag_detail')">sort</a>
                 <form class="ui-filterable"  data-position="fixed">
                     <input id="termsFilter" data-type="search">
@@ -76,7 +80,7 @@
         <div data-role="page" id="tags">
 
             <div data-role="header" data-position="fixed">
-                <form >
+                <form id="tagswitch">
                     <fieldset data-role="controlgroup" data-type="horizontal">
                         <input type="radio" name="tagfilter" id="tagfilter_cat" value="cat" checked="checked" onclick="filterTags('cat')">
                         <label for="tagfilter_cat">Categories</label>
@@ -100,7 +104,7 @@
         <div data-role="page" id="relatedtags">
 
             <div data-role="header" data-position="fixed">
-                <h1><span class="relatedTo">Tags related to : </span> <span id="tag_name"></span></h1>
+                <h1><span class="subhead">Tags related to : </span> <span id="tag_name"></span></h1>
                 <a href="#" class="ui-btn ui-btn-left" data-rel="back">< back</a>
           </div>
 
@@ -151,6 +155,7 @@
               <ul data-role="listview" id="jobs_list"><ul>
 
           </div>
+          <div class="spin spin-dusky" data-spin="spin"></div>
 
         </div>
 
@@ -159,9 +164,8 @@
                 <h1>About</h1>
             </div>
 
-          <div data-role="main" class="ui-content">
-            x
-          </div>
+            <div data-role="main" class="ui-content">
+            </div>
 
         </div>
 
@@ -181,10 +185,24 @@
             }
 
             .related { width:100%; height: auto; }
-            .relatedTo { font-size: 10px; }
+            .subhead { font-size: 10px; }
 
             #tags .ui-filterable {display: inline;}
 
+          #tagswitch
+          {
+            margin: 0 auto;
+            width: 40%;
+          }
+
+          .spin
+          { 
+            position: absolute;
+            margin: 0px 0 0 -50px;
+            left: 50%;
+            z-index: 1;
+
+          }
         </style>
 
     </body>

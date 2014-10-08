@@ -41,13 +41,16 @@ var resourceLinks = [
     }
 ];
 
+
  $(document).on('pageshow', '#terms', function(){
 
-        $('#termslist').on('click', 'a', function(e) {
-            // store selected tag into global variable for use on detail page
-            localStorage.setItem('curTag', this.id);
-            curTag = this.id;
-        });
+    $('#termslist').on('click', 'a', function(e) {
+        // store selected tag into global variable for use on detail page
+        localStorage.setItem('curTag', this.id);
+        curTag = this.id;
+    });
+
+    $("#termslist").filterable('option', 'filterCallback', startsWithSearch);
 
 });
 
@@ -70,7 +73,7 @@ var app = {
 
                 // set new timestamp for data expiration after 24 hours
                 updated = new Date();
-                updated = updated.setHours(updated.getHours() + 24);
+                updated = updated.setHours(updated.getHours() + 1);
                 localStorage.setItem('updated', updated);
 
             });
@@ -85,7 +88,8 @@ var app = {
             tags = JSON.parse(tags);
             alltags = JSON.parse(alltags);
             updateList(tags, '#termslist','#tag_detail');  
-        }
+        }        
+        
 
     },
     // Bind Event Listeners
@@ -134,6 +138,14 @@ function getTag(tag) {
     }
 }
 
+function startsWithSearch(idx, searchValue) {
+    if ( searchValue ) {
+        // matching items are filtered from display
+        return this.innerText.toLowerCase().indexOf( searchValue ) !== 0;
+    }
+}
+
+
 function filterTags(filterVal) {
     var tmpArray = alltags;
     if (filterVal == 'cat') {
@@ -163,6 +175,10 @@ function loadJobs() {
 
         var loc = ($( "#loc" ).val()) ? $( "#loc" ).val() : "";
         var url = 'http://brisksoft.herokuapp.com/getsalaries?location=' +loc + '&kw=' + kw;  
+
+        $('.spin').spin(); // setup loading spinner
+        $('.spin').spin('show');
+
         $.getJSON( url, function( data ) {
             $("#jobs_list").empty();
             $.each(data, function(i, job) {
@@ -174,7 +190,9 @@ function loadJobs() {
                     $("#jobs_list").append('<li><h3>' + job.title + '</h3><span class="ui-li-aside">' + job.salary + '</span</li>');
                 }
             });
-            $("#jobs_list").listview('refresh');     
+            $("#jobs_list").listview('refresh');
+            $('.spin').spin('hide');
+
         });
     }
 }
@@ -268,7 +286,7 @@ $(document).on('pageinit', '#tags', function(){
 
 
 $("#jobs").on('pagebeforeshow', function( event ) {
-    console.log(curTag);
+    $('.spin').spin('hide');
     if (curTag) {
         $( "#kw" ).val(curTag);
         loadJobs();
@@ -310,10 +328,13 @@ $("#relatedtags").on('pagebeforeshow', function( event ) {
 
 $(document).on('pageinit', '#about', function(){
     // load about page
-    $( "#about .ui-content" ).load( "http://localhost/~brenden/BriskSoft/glossary/about.php .ui-content", function() {
+
+    $( "#about .ui-content" ).load( "http://brisksoft.us/glossary/about.php .ui-content", function() {
                     $("#about .ui-content" ).trigger("create");
     });
 
     // clone footer from main page 
     $( "#terms #footer" ).clone().appendTo( "#about" );
 });
+
+
