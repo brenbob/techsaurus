@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html lang=en>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <meta name="msapplication-tap-highlight" content="no" />
+
+        <!-- JQuery dependencies -->
+        <link rel="stylesheet" href="css/jquery.mobile.min.css">
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/jquery.mobile.min.js"></script>
+
+        <!-- custom loading overlay -->
+        <script src="js/jquery.spin.js" type="text/javascript"></script>
+        <link href="css/jquery.spin.css" rel="stylesheet" type="text/css" />
+
+        <title>Techsaurus</title>
+
+        <!-- analytics -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-30717261-5', 'auto');
+//          ga('send', 'pageview', 'terms');
+
+        </script>
+
+    </head>
+    <body>
+        <div data-role="page" id="terms">
+            <div data-role="header" data-position="fixed">
+                <h1>Techsaurus<br><span class="subhead">Master tech buzzwords</span></h1>
+                <a href="#" class="ui-btn ui-btn-right" onclick="sortList('#termslist','#tag_detail')">sort</a>
+                <form class="ui-filterable"  data-position="fixed">
+                    <input id="termsFilter" data-type="search">
+                </form>                
+            </div>
+
+            <div data-role="main" class="ui-content">
+
+                <div>
+                  <ul data-role="listview" id="termslist" data-autodividers="true" data-filter="true" data-input="#termsFilter">
+                  </ul>
+                </div>
+
+                <div data-role="footer" data-position="fixed" id="footer">
+                    <a href="#terms" class="ui-btn ui-icon-home ui-btn-icon-left">Terms</a>
+                    <a href="#tags" class="ui-btn">Tags</a>
+                    <a href="#jobs" class="ui-btn">Jobs</a>
+                    <a href="#about" class="ui-btn ui-icon-info ui-btn-icon-left">About</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div data-role="page" id="tags">
+
+            <div data-role="header" data-position="fixed">
+                <form id="tagswitch">
+                    <fieldset data-role="controlgroup" data-type="horizontal">
+                        <input type="radio" name="tagfilter" id="tagfilter_cat" value="cat" checked="checked" onclick="filterTags('cat')">
+                        <label for="tagfilter_cat">Categories</label>
+                        <input type="radio" name="tagfilter" id="tagfilter_all" value="all" onclick="filterTags('all')">
+                        <label for="tagfilter_all">All tags</label>
+                    </fieldset>
+                </form> 
+                <a href="#" class="ui-btn ui-btn-right" onclick="sortList('#tagslist')">sort</a>
+                <form class="ui-filterable"  data-position="fixed">
+                    <input id="tagsFilter" data-type="search">
+                </form>                
+          </div>
+
+          <div data-role="main" class="ui-content">
+                  <ul data-role="listview" id="tagslist" data-autodividers="true" data-filter="true" data-input="#tagsFilter">
+                  </ul>
+          </div>
+
+        </div>
+
+        <div data-role="page" id="relatedtags">
+
+            <div data-role="header" data-position="fixed">
+                <h1><span class="subhead">Tags related to : </span> <span id="tag_name"></span></h1>
+                <a href="#" class="ui-btn ui-btn-left" data-rel="back">< back</a>
+          </div>
+
+          <div data-role="main" class="ui-content">
+                <div>
+                  <ul data-role="listview" id="reltagslist">
+                  </ul>
+                </div>
+          </div>
+
+        </div>
+
+        <div data-role="page" id="tag_detail">
+
+            <div data-role="header" data-position="fixed">
+                <h1 id="title">Tag name</h1>
+                <a href="#" class="ui-btn ui-btn-left" data-rel="back">< back</a>
+                <a href="#" class="ui-btn ui-btn-right">share</a>
+            </div>
+
+          <div data-role="main" class="ui-content">
+
+            <form><textarea cols="40" rows="16" name="textarea" id="description"></textarea></form>
+            <div id="related" ></div><br>
+            <div class="example-wrapper" data-iscroll>
+              <ul data-role="listview" id="resource_list">
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div data-role="page" id="jobs">
+            <div data-role="header" data-position="fixed">
+                <h1>Job Trends</h1>
+                <form action="javascript:loadJobs()">
+                    <fieldset data-role="fieldcontain" data-type="horizontal" class="jobsearch">
+                        <input type="text" id="kw" placeholder="keyword or skill">&nbsp;
+                        <input type="text" id="loc" placeholder="city, state, or zip">
+                        <input type="submit" value="Search"></input>
+                    </fieldset>
+                </form>
+            </div>
+
+          <div data-role="main" class="ui-content">
+              <ul data-role="listview" id="jobs_list"><ul>
+
+          </div>
+          <div class="spin spin-dusky" data-spin="spin"></div>
+
+        </div>
+
+        <div data-role="page" id="about">
+            <div data-role="header" data-position="fixed">
+                <h1>About</h1>
+            </div>
+
+            <div data-role="main" class="ui-content">
+            </div>
+
+        </div>
+
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+
+        <style>
+            .footer {  text-align:center; }
+
+             .ui-input-text {
+                width: 140px; 
+              display:inline-block;
+            }
+
+            .related { width:100%; height: auto; }
+            .subhead { font-size: 10px; }
+
+            #tags .ui-filterable {display: inline;}
+
+          #tagswitch
+          {
+            margin: 0 auto;
+            width: 40%;
+          }
+
+          .spin
+          { 
+            position: absolute;
+            margin: 0px 0 0 -50px;
+            left: 50%;
+            z-index: 1;
+
+          }
+        </style>
+
+    </body>
+</html>

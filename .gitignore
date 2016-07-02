@@ -1,0 +1,7 @@
+# ignore following directories
+hooks/
+platforms/
+plugins/
+
+# ignore following files
+config.xml
