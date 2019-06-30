@@ -18,8 +18,8 @@
  */
 
  // global variables
-var tags = {}
-var alltags = {}
+var tags = {};
+var alltags = {};
 var curTag = ""; // currently selected tag
 var curCat = ""; // currently selected category
 var updated = "";
@@ -109,8 +109,6 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-
         console.log('Received Event: ' + id);
     }
 };
@@ -125,7 +123,7 @@ function updateList(data, listId, target) {
 }
 
 function sortList(listId, target) {
-    updateList(tags.reverse(), listId, target)
+    updateList(tags.reverse(), listId, target);
 }
 
 function getTag(tag) {
@@ -133,7 +131,6 @@ function getTag(tag) {
     for (var i=0; i < tags.length; i++) {
         if (tags[i].title == tag) {
             return tags[i];
-            break;
         }
     }
 }
@@ -279,7 +276,7 @@ $(document).on('pageinit', '#tags', function(){
 
  $("#tags").on('pagebeforeshow', function( event ) {
 
-    filterVal = $( "input:radio[name=tagfilter]:checked" ).val();
+    var filterVal = $( "input:radio[name=tagfilter]:checked" ).val();
     filterTags(filterVal);
 
 });
@@ -336,5 +333,3 @@ $(document).on('pageinit', '#about', function(){
     // clone footer from main page 
     $( "#terms #footer" ).clone().appendTo( "#about" );
 });
-
-
